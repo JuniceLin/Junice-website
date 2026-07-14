@@ -1,0 +1,859 @@
+:root {
+  color-scheme: dark;
+  --black: #000;
+  --white: #f4f4ef;
+  --muted: rgba(244, 244, 239, 0.62);
+  --line: rgba(244, 244, 239, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: Inter, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+#ambient-canvas,
+.scanline {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+#ambient-canvas {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.scanline {
+  z-index: 2;
+  opacity: 0.16;
+  background: repeating-linear-gradient(0deg, transparent 0 9px, rgba(255, 255, 255, 0.18) 9px 10px);
+  mix-blend-mode: screen;
+}
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 28px;
+  padding: 24px clamp(22px, 5vw, 72px);
+  background: linear-gradient(rgba(0, 0, 0, 0.78), transparent);
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+}
+
+.brand {
+  font-weight: 800;
+  letter-spacing: 0.42em;
+}
+
+.site-header nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: clamp(18px, 3vw, 48px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+body.is-home .site-header nav {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+}
+
+.site-header a {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  transition: color 180ms ease;
+}
+
+.site-header a:hover {
+  color: var(--white);
+}
+
+.section {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  padding: clamp(82px, 10vw, 130px) clamp(22px, 6vw, 90px);
+}
+
+.hero {
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 82px 82px;
+  content: "";
+}
+
+.hero-inner {
+  max-width: 1160px;
+}
+
+.eyebrow {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.glitch-title {
+  position: relative;
+  width: min-content;
+  margin: 0;
+  font-size: clamp(76px, 15vw, 190px);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.glitch-title::before,
+.glitch-title::after {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  content: attr(data-text);
+  opacity: 0.66;
+}
+
+.glitch-title::before {
+  clip-path: inset(0 0 58% 0);
+  transform: translate(-3px, -2px);
+  animation: glitchOne 2.4s steps(2, end) infinite;
+}
+
+.glitch-title::after {
+  clip-path: inset(54% 0 0 0);
+  transform: translate(3px, 2px);
+  animation: glitchTwo 3.1s steps(2, end) infinite;
+}
+
+.role-line {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  margin: 22px 0 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: clamp(18px, 2.4vw, 34px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.caret {
+  width: 0.68em;
+  height: 1.1em;
+  margin-left: 8px;
+  background: var(--white);
+  animation: blink 900ms steps(2, end) infinite;
+}
+
+.hero-copy {
+  max-width: 760px;
+  color: rgba(244, 244, 239, 0.76);
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.18;
+}
+
+.hero-actions,
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.hero-nav {
+  flex-wrap: nowrap;
+  gap: clamp(18px, 3.6vw, 64px);
+  margin-top: 30px;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.hero-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-nav a {
+  color: rgba(244, 244, 239, 0.68);
+  flex: 0 0 auto;
+  font-size: clamp(14px, 1.45vw, 22px);
+  font-weight: 700;
+  letter-spacing: clamp(0.14em, 0.42vw, 0.28em);
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.hero-nav a:hover {
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+.button,
+.portfolio-tab,
+.experiment-button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.button:hover,
+.portfolio-tab:hover,
+.portfolio-tab.is-active,
+.experiment-button:hover,
+.experiment-button.is-active {
+  background: var(--white);
+  color: var(--black);
+  transform: translateY(-2px);
+}
+
+.button.primary {
+  background: var(--white);
+  color: var(--black);
+}
+
+.button.primary:hover {
+  background: transparent;
+  color: var(--white);
+}
+
+.scroll-mark {
+  position: absolute;
+  right: 9vw;
+  bottom: 21vh;
+  color: rgba(244, 244, 239, 0.34);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+
+.ticker {
+  position: absolute;
+  right: 0;
+  bottom: 30px;
+  left: 0;
+  display: flex;
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  color: rgba(244, 244, 239, 0.42);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.38em;
+}
+
+.ticker span {
+  flex: 0 0 auto;
+  padding: 14px 0;
+  white-space: nowrap;
+  animation: marquee 28s linear infinite;
+}
+
+.section-heading {
+  max-width: 980px;
+  margin-bottom: 50px;
+}
+
+.section-heading h2,
+.contact-section h2 {
+  margin: 0;
+  font-size: clamp(46px, 8vw, 112px);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.about-section .section-heading h2 {
+  position: relative;
+  max-width: 820px;
+  font-size: clamp(34px, 5.6vw, 82px);
+  line-height: 0.94;
+  letter-spacing: 0.02em;
+  animation: titleBreath 5.6s ease-in-out infinite;
+}
+
+.about-section .section-heading h2::after {
+  position: absolute;
+  right: 0;
+  bottom: -18px;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
+  content: "";
+  opacity: 0.58;
+  transform-origin: left;
+  animation: titleScan 3.8s cubic-bezier(0.19, 1, 0.22, 1) infinite;
+}
+
+.about-grid,
+.research-grid,
+.portfolio-panel,
+.live-sketches {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.bio-block {
+  grid-column: span 1;
+}
+
+.skill-matrix {
+  grid-column: span 2;
+}
+
+.bio-block,
+.skill-matrix,
+.education-block,
+.timeline-row,
+.leadership-card,
+.paper-card,
+.project-card,
+.processing-controls {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.bio-block,
+.skill-matrix,
+.education-block,
+.leadership-card,
+.paper-card,
+.project-card,
+.processing-controls {
+  min-height: 260px;
+  padding: 24px;
+}
+
+.education-block {
+  position: relative;
+  min-height: 220px;
+  overflow: hidden;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.education-block::after {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  width: 44px;
+  height: 44px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  content: "";
+  opacity: 0.28;
+  transition: width 180ms ease, height 180ms ease, opacity 180ms ease;
+}
+
+.education-block:hover {
+  background: var(--white);
+  color: var(--black);
+  transform: translateY(-6px);
+}
+
+.education-block:hover::after {
+  width: 76px;
+  height: 76px;
+  opacity: 0.48;
+}
+
+.skill-matrix ul,
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.skill-matrix li,
+.filter-bar span {
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.dark-section {
+  background: #050505;
+}
+
+.timeline {
+  border-top: 1px solid var(--line);
+}
+
+.timeline-row {
+  display: grid;
+  grid-template-columns: 160px minmax(220px, 0.55fr) 1fr;
+  gap: 24px;
+  padding: 28px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  transition: background 180ms ease, color 180ms ease, padding-inline 180ms ease;
+}
+
+.timeline-row:hover {
+  padding-inline: 18px;
+  background: var(--white);
+  color: var(--black);
+}
+
+.timeline-row span,
+.education-block span,
+.leadership-card span,
+.paper-card span,
+.project-card span {
+  font-family: "IBM Plex Mono", monospace;
+  color: currentColor;
+  opacity: 0.62;
+}
+
+.leadership-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.leadership-card {
+  min-height: 240px;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.leadership-card:hover {
+  background: var(--white);
+  color: var(--black);
+  transform: translateY(-6px);
+}
+
+.paper-section {
+  background: var(--white);
+  color: var(--black);
+}
+
+.paper-section .eyebrow {
+  color: rgba(0, 0, 0, 0.58);
+}
+
+.paper-card {
+  min-height: 360px;
+  background: #fff;
+  color: var(--black);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.08);
+  transition: transform 180ms ease;
+}
+
+.paper-card:hover {
+  transform: rotate(-1.5deg) translateY(-8px);
+}
+
+.portfolio-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.portfolio-panel {
+  display: none;
+}
+
+.portfolio-panel.is-active {
+  display: grid;
+}
+
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 640px;
+  overflow: hidden;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.project-card:hover {
+  background: var(--white);
+  color: var(--black);
+  transform: translateY(-8px);
+}
+
+.project-card h3 {
+  max-width: 12ch;
+  margin: 30px 0 18px;
+  font-size: clamp(30px, 4.5vw, 64px);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.project-card p {
+  max-width: 48ch;
+  margin: 0;
+  color: currentColor;
+  opacity: 0.76;
+  line-height: 1.45;
+}
+
+.figma-link {
+  margin-top: auto;
+  padding-top: 34px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.figma-link::after {
+  content: " ->";
+}
+
+.figma-board {
+  position: relative;
+  height: 300px;
+  margin: -2px -2px 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #090909;
+}
+
+.figma-board::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(244, 244, 239, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 244, 239, 0.08) 1px, transparent 1px);
+  background-size: 38px 38px;
+  content: "";
+  mix-blend-mode: screen;
+}
+
+.figma-board iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(1) contrast(1.08);
+}
+
+.project-preview {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.78fr 1fr;
+  grid-template-rows: 1fr 0.72fr;
+  gap: 8px;
+  height: 190px;
+  margin: -2px -2px 24px;
+  color: currentColor;
+}
+
+.project-preview i {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid currentColor;
+  opacity: 0.92;
+}
+
+.project-preview i:first-child {
+  grid-row: 1 / -1;
+}
+
+.project-preview i::before,
+.project-preview i::after {
+  position: absolute;
+  content: "";
+}
+
+.project-preview i::before {
+  inset: 12px;
+  border: 1px solid currentColor;
+  opacity: 0.46;
+}
+
+.project-preview i::after {
+  inset: auto 14px 14px;
+  height: 34%;
+  background:
+    linear-gradient(currentColor 0 0) 0 0 / 48% 2px no-repeat,
+    linear-gradient(currentColor 0 0) 0 12px / 78% 2px no-repeat,
+    linear-gradient(currentColor 0 0) 0 24px / 58% 2px no-repeat;
+  opacity: 0.58;
+}
+
+.preview-game i:first-child {
+  border-radius: 18px;
+}
+
+.preview-game i:first-child::before {
+  inset: 22px 18px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, currentColor 0 5px, transparent 6px),
+    linear-gradient(currentColor 0 0) 50% 50% / 68% 1px no-repeat,
+    linear-gradient(90deg, currentColor 0 0) 50% 50% / 1px 68% no-repeat;
+}
+
+.preview-system i {
+  background:
+    linear-gradient(currentColor 0 0) 14px 14px / 36px 2px no-repeat,
+    repeating-linear-gradient(0deg, transparent 0 18px, currentColor 19px 20px),
+    repeating-linear-gradient(90deg, transparent 0 22px, currentColor 23px 24px);
+}
+
+.preview-chat i:first-child {
+  border-radius: 20px;
+}
+
+.preview-chat i::after {
+  inset: 20px 14px;
+  height: auto;
+  background:
+    linear-gradient(currentColor 0 0) 0 0 / 64% 22px no-repeat,
+    linear-gradient(currentColor 0 0) 34% 44px / 66% 22px no-repeat,
+    linear-gradient(currentColor 0 0) 0 88px / 76% 22px no-repeat,
+    linear-gradient(currentColor 0 0) 28% 132px / 72% 22px no-repeat;
+  opacity: 0.38;
+}
+
+.preview-flow {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+}
+
+.preview-flow i:first-child {
+  grid-row: auto;
+}
+
+.preview-flow i::after {
+  inset: 18px;
+  height: auto;
+  background:
+    linear-gradient(currentColor 0 0) 0 0 / 100% 28px no-repeat,
+    linear-gradient(currentColor 0 0) 0 46px / 70% 2px no-repeat,
+    linear-gradient(currentColor 0 0) 0 60px / 88% 2px no-repeat,
+    linear-gradient(currentColor 0 0) 0 88px / 42% 32px no-repeat,
+    linear-gradient(currentColor 0 0) 58% 88px / 42% 32px no-repeat;
+  opacity: 0.42;
+}
+
+.preview-web {
+  grid-template-columns: 1.3fr 0.72fr;
+}
+
+.preview-web i:first-child::after {
+  inset: 16px;
+  height: auto;
+  background:
+    linear-gradient(currentColor 0 0) 0 0 / 100% 22px no-repeat,
+    linear-gradient(currentColor 0 0) 0 50px / 74% 44px no-repeat,
+    linear-gradient(currentColor 0 0) 0 118px / 30% 24px no-repeat,
+    linear-gradient(currentColor 0 0) 36% 118px / 30% 24px no-repeat,
+    linear-gradient(currentColor 0 0) 72% 118px / 28% 24px no-repeat;
+  opacity: 0.38;
+}
+
+.filter-bar {
+  grid-column: 1 / -1;
+  margin-bottom: 8px;
+}
+
+.mini-sketch {
+  width: 100%;
+  height: 280px;
+  border: 1px solid var(--line);
+  background: #030303;
+}
+
+.vibe-list {
+  grid-column: 1 / -1;
+}
+
+.vibe-list article {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: clamp(24px, 4vw, 58px);
+  line-height: 1;
+}
+
+.processing-room {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+  gap: 18px;
+}
+
+.processing-stage {
+  min-height: 560px;
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+
+#processing-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.processing-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.processing-controls label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--white);
+}
+
+.contact-section {
+  display: grid;
+  align-content: center;
+}
+
+.social-links a,
+.social-links span {
+  border: 1px solid var(--line);
+  padding: 14px 18px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 700ms ease, transform 700ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes glitchOne {
+  0%, 88%, 100% { transform: translate(0); }
+  90% { transform: translate(-12px, -3px); }
+  94% { transform: translate(8px, 2px); }
+}
+
+@keyframes glitchTwo {
+  0%, 82%, 100% { transform: translate(0); }
+  84% { transform: translate(10px, 3px); }
+  90% { transform: translate(-8px, -2px); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes marquee {
+  to { transform: translateX(-100%); }
+}
+
+@keyframes titleBreath {
+  0%, 100% {
+    letter-spacing: 0.02em;
+    opacity: 1;
+  }
+  50% {
+    letter-spacing: 0.055em;
+    opacity: 0.86;
+  }
+}
+
+@keyframes titleScan {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  24%, 72% {
+    opacity: 0.58;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-header {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+
+  .about-grid,
+  .research-grid,
+  .portfolio-panel,
+  .live-sketches,
+  .leadership-strip,
+  .processing-room,
+  .timeline-row {
+    grid-template-columns: 1fr;
+  }
+
+  .bio-block,
+  .skill-matrix {
+    grid-column: auto;
+  }
+}
