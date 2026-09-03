@@ -1,0 +1,18 @@
+@import url("dream-convergence.css");
+:root{--bg:#1b0e09;--surface:#28150d;--surface-2:#3a2116;--text:#fff0dc;--muted:#d0ad91;--violet:#ee9d61;--cyan:#ffd18a;--line:#70432d}
+.case-hero::before{background:radial-gradient(circle at 70% 48%,rgba(238,157,97,.23),transparent 35%),linear-gradient(125deg,transparent 50%,rgba(255,209,138,.06))}
+.case-hero{grid-template-columns:minmax(0,.7fr) minmax(420px,1.1fr);gap:clamp(28px,3.4vw,54px);padding-bottom:clamp(24px,3vw,44px)}
+.case-hero-copy{padding-left:clamp(28px,4vw,72px)}
+.hero-media{justify-self:center;width:min(calc(min(820px,78svh) * 1280 / 2668),100%);box-shadow:0 34px 92px rgba(116,49,19,.32)}
+.hero-media img{aspect-ratio:853/1200;object-position:center 7%;max-height:72svh}
+.hero-media video{display:block;width:100%;height:auto;max-height:min(820px,78svh);aspect-ratio:1280/2668;object-fit:cover;background:#0d0705}
+.mars-gallery{display:flex;gap:30px;margin-top:64px;overflow-x:auto;padding:0 clamp(20px,3vw,48px) 22px;scroll-padding-left:clamp(20px,3vw,48px);scroll-snap-type:x mandatory}
+.case-section:has(.mars-gallery){padding-top:clamp(70px,8vw,118px)}
+.case-section:has(.mars-gallery) .section-intro{max-width:980px}
+.case-section:has(.mars-gallery) h2{font-size:clamp(30px,3.6vw,50px)}
+.mars-gallery figure{position:relative;flex:0 0 min(360px,72vw);scroll-snap-align:start;margin:0;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--surface);box-shadow:0 28px 90px rgba(0,0,0,.24)}
+.mars-gallery figure::after{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 58%,rgba(27,14,9,.82));content:""}
+.mars-gallery img{width:100%;aspect-ratio:853/1200;object-fit:contain;object-position:center;background:#120905}
+.mars-gallery figcaption{position:absolute;right:0;bottom:0;left:0;z-index:1;padding:18px;color:var(--text);font-size:14px;line-height:1.35}
+@media(max-width:1100px){.mars-gallery figure{flex-basis:min(340px,76vw)}}
+@media(max-width:900px){.case-hero{grid-template-columns:1fr}.case-hero-copy{padding-left:0}.hero-media{justify-self:center;width:min(calc(min(720px,68svh) * 1280 / 2668),100%);margin-inline:auto}.mars-gallery{display:flex}.mars-gallery figure{flex-basis:min(330px,82vw)}.mars-gallery img{aspect-ratio:853/1200;object-position:center}.hero-media video{width:100%;height:auto;max-height:min(720px,68svh);aspect-ratio:1280/2668;object-fit:cover}}

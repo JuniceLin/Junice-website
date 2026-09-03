@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emotion Diary · Junice Lin</title>
+    <meta name="description" content="Emotion Diary Mood Calendar vibe coding project by Yihong Junice Lin." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="emotion-diary.css" />
+  </head>
+  <body>
+    <header class="case-header">
+      <a href="index.html#portfolio">JUNICE LIN</a>
+      <nav aria-label="Emotion Diary navigation">
+        <a href="#screens">Screens</a>
+        <a href="#design">Design</a>
+        <a href="#flow">Flow</a>
+        <a href="index.html#portfolio">Back to portfolio</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="diary-hero">
+        <div>
+          <p class="kicker"><span>Vibe Coding</span> Python / Flask / Colab</p>
+          <h1>Emotion Diary Mood Calendar</h1>
+          <p class="lede">A Flask-based mood tracking prototype that records daily emotions and turns them into calendar, daily, weekly, and monthly reflection views.</p>
+          <dl class="meta">
+            <div><dt>Role</dt><dd>Creative Coder / System Designer</dd></div>
+            <div><dt>Tools</dt><dd>Python, Flask, HTML/CSS, Google Colab</dd></div>
+            <div><dt>Output</dt><dd>Mood calendar, analysis pages, summaries, avatar videos</dd></div>
+          </dl>
+          <a class="notebook-link" href="assets/portfolio/emotion-diary-colab.ipynb" download>Download Notebook</a>
+        </div>
+        <div class="runtime-card" aria-label="Runtime preview">
+          <div class="runtime-bar"><span></span><span></span><span></span><strong>colab runtime</strong></div>
+          <div class="runtime-log">
+            <p><span>&gt;</span> install flask pyngrok</p>
+            <p><span>&gt;</span> write data_manager.py</p>
+            <p><span>&gt;</span> analyze emotion records</p>
+            <p><span>&gt;</span> generate calendar data</p>
+            <p><span>&gt;</span> render weekly_summary.html</p>
+          </div>
+          <div class="mood-grid" aria-hidden="true">
+            <i style="--c:#fdd835"></i><i style="--c:#42a5f5"></i><i style="--c:#ff7043"></i><i style="--c:#9ccc65"></i><i style="--c:#d32f2f"></i><i style="--c:#26c6da"></i>
+            <i style="--c:#9ccc65"></i><i style="--c:#fdd835"></i><i style="--c:#42a5f5"></i><i style="--c:#ff7043"></i><i style="--c:#d32f2f"></i><i style="--c:#26c6da"></i>
+            <i style="--c:#42a5f5"></i><i style="--c:#d32f2f"></i><i style="--c:#9ccc65"></i><i style="--c:#fdd835"></i><i style="--c:#ff7043"></i><i style="--c:#26c6da"></i>
+          </div>
+        </div>
+      </section>
+
+      <section id="screens" class="case-section narrative-section">
+        <p class="kicker"><span>01</span> Interface Screens</p>
+        <div class="narrative-intro">
+          <h2>From emotional input to visual reflection.</h2>
+          <p>The interface is organized as a readable journey: write a daily record, translate it into structured emotion data, then review the result through calendar color, summaries, and avatar-based expression.</p>
+        </div>
+        <div class="narrative-stack">
+          <article class="narrative-card narrative-card-wide">
+            <div class="narrative-copy">
+              <span>Input</span>
+              <h3>Separate text, emotion names, and intensity before visualization.</h3>
+              <p>The record form keeps emotional description human and open-ended, while emotion names and intensity values are entered separately so the system can calculate patterns without flattening the diary entry.</p>
+            </div>
+            <figure>
+              <img src="assets/portfolio/emotion-diary-screens/image5.png" alt="Record Your Mood input form with emotion intensity fields" />
+              <figcaption>Record form as the starting point of the system.</figcaption>
+            </figure>
+          </article>
+
+          <article class="narrative-card narrative-card-summary">
+            <div class="narrative-copy">
+              <span>Calendar</span>
+              <h3>Emotion becomes a color field that can be read day by day.</h3>
+              <p>The mood calendar turns repeated records into a visual rhythm. Hoverable blocks reveal date, number of entries, and dominant feeling, making emotional change easier to scan over time.</p>
+            </div>
+            <figure>
+              <img src="assets/portfolio/emotion-diary-screens/image1.png" alt="Mood Calendar interface with color-coded emotion blocks" />
+              <figcaption>Color-coded calendar view for daily emotional states.</figcaption>
+            </figure>
+          </article>
+
+          <article class="narrative-card">
+            <div class="narrative-copy">
+              <span>Summary</span>
+              <h3>Weekly views turn raw entries into patterns and prompts.</h3>
+              <p>Average intensity, dominant emotion, active days, distribution, quotes, and progress bars help the user move from memory logging into reflection.</p>
+            </div>
+            <figure>
+              <img src="assets/portfolio/emotion-diary-screens/image4.png" alt="Weekly Summary interface with emotion distribution and quote feedback" />
+              <figcaption>Weekly summary with emotional distribution and feedback.</figcaption>
+            </figure>
+          </article>
+
+          <article class="narrative-card narrative-card-wide">
+            <div class="narrative-copy">
+              <span>Embodiment</span>
+              <h3>Emotion avatars give the data a performative layer.</h3>
+              <p>I created six main emotion avatars in Blender and used Mixamo action libraries for movement, extending the project from analysis into a more embodied emotional representation.</p>
+            </div>
+            <figure>
+              <img src="assets/portfolio/emotion-diary-screens/image2.png" alt="Emotion avatar rendered as a green character on a dark stage" />
+              <figcaption>Avatar output as an expressive companion to the data view.</figcaption>
+            </figure>
+          </article>
+        </div>
+      </section>
+
+      <section id="design" class="case-section design-section">
+        <div class="section-split">
+          <div>
+            <p class="kicker"><span>03</span> Design Decisions</p>
+            <h2>Structured input makes emotion data easier to calculate and visualize.</h2>
+          </div>
+          <p>
+            I separated emotion names and intensity values so the system can preserve multiple feelings in one day while still producing a clear calendar view.
+          </p>
+        </div>
+        <div class="rules-grid">
+          <article><span>01</span><strong>Emotion Mapping</strong><p>Specific emotion words are mapped into six major categories drawn from prior literature review.</p></article>
+          <article><span>02</span><strong>Intensity Score</strong><p>The score of one category is calculated by summing its intensity values across all records in a day.</p></article>
+          <article><span>03</span><strong>Daily Average</strong><p>The average of all intensity values represents the emotional intensity of that day.</p></article>
+          <article><span>04</span><strong>Calendar Rule</strong><p>When one day has multiple records, the calendar represents the main emotion from the latest input.</p></article>
+        </div>
+      </section>
+
+      <section id="flow" class="case-section flow-section">
+        <p class="kicker"><span>04</span> Output Views</p>
+        <ol class="flow-list">
+          <li><span>01</span><strong>Mood Calendar</strong><p>Colored blocks show daily states with date, record count, and main emotion.</p></li>
+          <li><span>02</span><strong>Daily Analysis</strong><p>Emotion map, profile, average intensity, records, quotes, and avatar videos.</p></li>
+          <li><span>03</span><strong>Weekly Summary</strong><p>Average intensity, dominant emotion, active days, distribution, and progress bars.</p></li>
+          <li><span>04</span><strong>Monthly Summary</strong><p>Monthly stats, trend indicator, emotion decomposition, and personalized insights.</p></li>
+        </ol>
+      </section>
+
+    </main>
+  </body>
+</html>

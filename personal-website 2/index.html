@@ -6,7 +6,7 @@
     <title>Junice Lin · Personal Portfolio</title>
     <meta
       name="description"
-      content="Junice Lin's black-and-white interactive portfolio for HCI, UI/UX, creative coding, research, visual arts, and web experiments."
+      content="Junice Lin's black-and-white interactive portfolio for HCI, UI/UX, creative coding, research, visual projects, and web experiments."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,6 +19,17 @@
   <body class="is-home">
     <canvas id="ambient-canvas" aria-hidden="true"></canvas>
     <div class="scanline" aria-hidden="true"></div>
+    <div class="page-transition" aria-hidden="true">
+      <div class="transition-light"></div>
+      <div class="transition-aperture"></div>
+      <div class="transition-rail">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="transition-meta">
+        <span class="transition-kicker">Focus</span>
+        <strong class="transition-title">Home</strong>
+      </div>
+    </div>
 
     <header class="site-header">
       <a class="brand" href="#home">JUNICE LIN</a>
@@ -27,54 +38,82 @@
         <a href="#experience">Experience</a>
         <a href="#research">Research</a>
         <a href="#portfolio">Portfolio</a>
+        <a href="#processing">Processing</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
 
+    <aside class="deck-index" aria-label="Page progress">
+      <span data-page-dot="home" data-label="Home">01</span>
+      <span data-page-dot="about" data-label="About">02</span>
+      <span data-page-dot="experience" data-label="Experience">03</span>
+      <span data-page-dot="research" data-label="Research">04</span>
+      <span data-page-dot="portfolio" data-label="Portfolio">05</span>
+      <span data-page-dot="processing" data-label="Processing">06</span>
+      <span data-page-dot="contact" data-label="Contact">07</span>
+    </aside>
+
     <main>
       <section id="home" class="hero section">
         <div class="hero-inner">
-          <p class="eyebrow">HCI Research / UI UX / Creative Technology</p>
+          <p class="eyebrow">Human-Computer Interaction / UI UX / Augmented Creativity / Digital Media</p>
           <h1 class="glitch-title" data-text="JUNICE LIN">JUNICE LIN</h1>
           <p class="role-line">
             <span id="typewriter" aria-live="polite">HCI Researcher</span>
             <span class="caret" aria-hidden="true"></span>
-          </p>
-          <p class="hero-copy">
-            I study computation and design across Duke Kunshan University and Duke University,
-            building user-centered web experiences, AI-assisted interactive systems, and visual
-            experiments with code.
           </p>
           <nav class="hero-actions hero-nav" aria-label="Homepage section navigation">
             <a href="#about">About</a>
             <a href="#experience">Experience</a>
             <a href="#research">Research</a>
             <a href="#portfolio">Portfolio</a>
+            <a href="#processing">Creativity</a>
             <a href="#contact">Contact</a>
           </nav>
+          <a class="hero-email" href="mailto:Cinderellalxxlol@gmail.com" data-email="Cinderellalxxlol@gmail.com">
+            <span>Email</span>
+            <strong>Cinderellalxxlol@gmail.com</strong>
+            <em>Click to copy</em>
+          </a>
         </div>
+        <aside class="hero-orbit" aria-hidden="true">
+          <div class="orbit-surface">
+            <div class="orbit-rings" aria-hidden="true"></div>
+          </div>
+        </aside>
         <div class="scroll-mark" aria-hidden="true">Scroll</div>
         <div class="ticker" aria-hidden="true">
-          <span>VIBE CODING · HCI RESEARCH · UI/UX DESIGN · GENERATIVE ARTIST · INTERACTION DESIGNER · VISUAL SYSTEMS · PROCESSING · ARDUINO · TOUCHDESIGNER · BLENDER ·</span>
-          <span>VIBE CODING · HCI RESEARCH · UI/UX DESIGN · GENERATIVE ARTIST · INTERACTION DESIGNER · VISUAL SYSTEMS · PROCESSING · ARDUINO · TOUCHDESIGNER · BLENDER ·</span>
+          <span>HUMAN-COMPUTER INTERACTION · AI EXPLORE AND DEVELOP · UI/UX DESIGN · AUGMENTED CREATIVITY · GENERATIVE ART · INTERACTION DESIGN · VISUAL SYSTEMS · </span>
+          <span>HUMAN-COMPUTER INTERACTION · AI EXPLORE AND DEVELOP · UI/UX DESIGN · AUGMENTED CREATIVITY · GENERATIVE ART · INTERACTION DESIGN · VISUAL SYSTEMS · </span>
         </div>
       </section>
 
       <section id="about" class="section about-section">
         <div class="section-heading">
           <p class="eyebrow">About / Resume</p>
-          <h2>HCI researcher, UI/UX designer, front-end builder.</h2>
+          <h2 class="about-title">
+            <span>HCI researcher, Developer,</span>
+            <span>UI/UX designer, Interaction designer,</span>
+            <span>Generative artist.</span>
+          </h2>
         </div>
         <div class="about-grid">
           <article class="bio-block reveal">
             <h3>Profile</h3>
             <p>
               I am Yihong (Junice) Lin, an interdisciplinary undergraduate studying Computation
-              and Design / Digital Media through the Duke Kunshan University and Duke University
-              dual-degree program. My work connects HCI research, UI/UX design, web development,
+              and Design (Digital Media) through  Duke University and Duke Kunshan University 
+              dual-degree program. My research direction is Human-Computer Interaction, with a 
+              focus on user experience design and the creative application of AI. I am interested 
+              in both functional implementation and user experience, with a core emphasis on exploring 
+              human-centered design. My work connects HCI research, UI/UX design, web development,
               creative coding, and digital media.
             </p>
           </article>
+          <figure class="profile-photo reveal" tabindex="0" role="button" aria-label="Release falling stars from Junice's portrait">
+            <img src="assets/portfolio/junice-profile.jpg" alt="Portrait of Yihong Junice Lin">
+            <figcaption>Yihong / Junice Lin</figcaption>
+          </figure>
           <article class="skill-matrix reveal">
             <h3>Skills + Tools</h3>
             <ul>
@@ -84,34 +123,27 @@
               <li>Processing</li>
               <li>Arduino</li>
               <li>Figma</li>
-              <li>TouchDesigner</li>
+              <li>Touch Designer</li>
               <li>Adobe Illustrator</li>
               <li>Blender</li>
               <li>Video Editing</li>
-              <li>Public Speaking</li>
               <li>Social Media Marketing</li>
             </ul>
           </article>
           <article class="education-block reveal">
             <span>Education</span>
-            <h3>Duke Kunshan University + Duke University</h3>
+            <h3>Duke University + Duke Kunshan University</h3>
             <p>
-              B.A. in Interdisciplinary Studies, Computation and Design / Digital Media.
-              <br />GPA 3.8/4.0
-              <br />Scholarship 170,000 RMB
+              B.A. in Interdisciplinary Studies, 
             </p>
+             <p>
+              Computation and Design / Digital Media.
+            </p>           
           </article>
           <article class="education-block reveal">
-            <span>Certification</span>
-            <h3>Cambridge Linguaskill 180+</h3>
-            <p>C1 and above. Fluent in English and Mandarin.</p>
-          </article>
-          <article class="education-block reveal">
-            <span>Hobby</span>
-            <h3>Movement, image, and performance</h3>
-            <p>
-              Street dance, singing, painting, photography, table tennis, badminton,
-              volleyball, and ultimate frisbee.
+            <span>Language</span>
+            <h3>Fluent in English and Mandarin</h3>
+            <p>Cambridge Linguaskill 180+, C1 and above. 
             </p>
           </article>
         </div>
@@ -154,7 +186,7 @@
             </p>
           </article>
           <article class="leadership-card reveal">
-            <span>Service / 2024-2026</span>
+            <span>Leadership / 2024-2026</span>
             <h3>Publicity Officer + Dance Captain</h3>
             <p>
               Designed posters, managed social media, edited recap videos, and led annual
@@ -167,23 +199,61 @@
       <section id="research" class="section paper-section">
         <div class="section-heading">
           <p class="eyebrow">Research</p>
-          <h2>Emotion, AI, performance, and HCI research.</h2>
+          <h2>Research in HCI</h2>
         </div>
         <div class="research-grid">
-          <article class="paper-card reveal">
-            <span>SRS / 2025</span>
-            <h3>EmotiStage</h3>
-            <p>Designed an AI-assisted interactive system that supports emotional awareness through stage performance and multi-modal generative AI.</p>
+          <article class="paper-card paper-card-featured reveal">
+            <div class="paper-meta-line">
+              <span>Mar 2025-Sep 2025</span>
+              <span>28th ACM International Conference on Multimodal Interaction (ICMI)</span>
+            </div>
+            <h3>Human and Computer Interaction Summer Research (SRS)</h3>
+            <p class="paper-role">Student Researcher</p>
+            <p>
+              Paper is accepted by 28th ACM International Conference on Multimodal Interaction
+              (ICMI): EmotiStage: Designing an Emotion-Driven Performance System with Multi-modal
+              Generative AI to Support Emotional Awareness.
+            </p>
+            <ul class="paper-detail-list">
+              <li>
+                Design EmotiStage, an AI-assisted interactive system that helps emotional awareness
+                through stage performance.
+              </li>
+              <li>
+                Conduct user studies to explore how generative AI supports emotional awareness and
+                self-reflection in creative contexts.
+              </li>
+              <li>
+                Integrate multi-modal to translate emotional narratives into performative experiences.
+              </li>
+              <li>
+                Build a new framework in music generative AI tools and explore more possibilities to
+                use it to express people’s emotions.
+              </li>
+            </ul>
+            <a class="paper-link" href="assets/portfolio/emotistage-icmi26.pdf" target="_blank" rel="noreferrer">Open Paper</a>
           </article>
           <article class="paper-card reveal">
-            <span>Under Review</span>
-            <h3>Emotion-Driven Performance System</h3>
-            <p>Paper: EmotiStage: Designing an Emotion-Driven Performance System with Multi-modal Generative AI to Support Emotional Awareness.</p>
-          </article>
-          <article class="paper-card reveal">
-            <span>Reading Club</span>
+            <span>Sep 2024-Present</span>
             <h3>HCI Reading Club</h3>
+            <p class="paper-role">Undergraduate Member</p>
             <p>Read and share HCI papers weekly, give presentations, work with professors and scholars, and identify research gaps and new questions.</p>
+          </article>
+          <article class="paper-card paper-card-wide reveal">
+            <span>Sep 2025-Nov 2025</span>
+            <h3>Duke University HCI Research</h3>
+            <p class="paper-role">Student Researcher</p>
+            <p>
+              Choice Authenticity and Player Agency in Historical Narrative Games.
+              Mixed-methods research on how Chinese young players evaluate historical authenticity,
+              player agency, and narrative choice in Road to Empress.
+            </p>
+            <ul class="paper-detail-list">
+              <li>Analyzed approximately 200 community reviews and semi-structured interviews with 6 participants.</li>
+              <li>Studied how players negotiate historical fidelity, entertainment value, and meaningful agency.</li>
+              <li>Identified cognitive authenticity, fake choices, and ethical friction as key themes in player interpretation.</li>
+            </ul>
+            <a class="paper-link" href="assets/portfolio/game-research.pdf" target="_blank" rel="noreferrer">Open PDF</a>
           </article>
         </div>
       </section>
@@ -195,110 +265,505 @@
         </div>
         <div class="portfolio-tabs" role="tablist" aria-label="Portfolio categories">
           <button class="portfolio-tab is-active" type="button" data-category="uiux">UI/UX Design</button>
-          <button class="portfolio-tab" type="button" data-category="visual">Visual Arts</button>
+          <button class="portfolio-tab" type="button" data-category="visual">Visual Projects</button>
           <button class="portfolio-tab" type="button" data-category="vibe">Vibe Coding Web</button>
         </div>
         <div class="portfolio-panels">
           <section class="portfolio-panel is-active" data-category-panel="uiux">
-            <article
-              class="project-card reveal"
-            >
-              <div class="figma-board">
-                <iframe
-                  title="Game flow Figma overview"
-                  loading="lazy"
-                  src="https://www.figma.com/embed?embed_host=share&amp;url=https://www.figma.com/design/XX2dD1py7MX0uiZtKedmc8/%E6%9E%97%E5%A5%95%E5%AE%8F-%E5%85%89%E5%AD%90%E6%B8%B8%E6%88%8F%E4%BA%A4%E4%BA%92%E6%B5%8B%E8%AF%95%E9%A2%98?node-id=0-1%26t=XOlnlAvN1P5twLcj-1"
-                ></iframe>
+            <article class="project-card project-card-game reveal">
+              <div class="work-board game-cover-board">
+                <img class="game-cover-bg" src="assets/portfolio/dream-team.png" alt="" aria-hidden="true" />
+                <img class="game-cover-main" src="assets/portfolio/dream-team.png" alt="Complete Dream Convergence multiplayer team formation interface" />
               </div>
-              <span>01 / Game Flow</span>
-              <h3>Game</h3>
-              <p>Interaction flows before the game officially starts, covering entry, selection, confirmation, and preparation stages.</p>
-              <a class="figma-link" href="https://www.figma.com/design/XX2dD1py7MX0uiZtKedmc8/%E6%9E%97%E5%A5%95%E5%AE%8F-%E5%85%89%E5%AD%90%E6%B8%B8%E6%88%8F%E4%BA%A4%E4%BA%92%E6%B5%8B%E8%AF%95%E9%A2%98?node-id=0-1&t=XOlnlAvN1P5twLcj-1" target="_blank" rel="noreferrer">Open Figma</a>
+              <span>01 / Game Interaction Design</span>
+              <h3>Dream Convergence</h3>
+              <p>A dream-infiltration pre-battle flow that turns teaming, world selection, matching, and persona setup into one continuous narrative.</p>
+              <div class="project-card-actions">
+                <a class="figma-link" href="dream-convergence.html">View case study</a>
+                <a class="figma-link" href="https://www.figma.com/design/XX2dD1py7MX0uiZtKedmc8/%E6%9E%97%E5%A5%95%E5%AE%8F-%E5%85%89%E5%AD%90%E6%B8%B8%E6%88%8F%E4%BA%A4%E4%BA%92%E6%B5%8B%E8%AF%95%E9%A2%98?node-id=0-1&t=XOlnlAvN1P5twLcj-1" target="_blank" rel="noreferrer">Figma</a>
+              </div>
+            </article>
+            <article class="project-card project-card-game project-card-mars reveal">
+              <div class="work-board game-cover-board mars-cover-board">
+                <img class="mars-tile mars-tile-large" src="assets/portfolio/mars-overview.png" alt="Mars Colony city overview interface" />
+                <img class="mars-tile" src="assets/portfolio/mars-management.png" alt="Mars Colony management dashboard" />
+                <img class="mars-tile" src="assets/portfolio/mars-build.png" alt="Mars Colony building flow interface" />
+                <img class="mars-tile" src="assets/portfolio/mars-character.png" alt="Mars Colony character management interface" />
+              </div>
+              <span>02 / Simulation Game UI/UX</span>
+              <h3>Mars Colony</h3>
+              <p>A Mars settlement management concept where construction, resources, companionship, and emotional ecology shape long-term play.</p>
+              <div class="project-card-actions">
+                <a class="figma-link" href="mars-colony.html">View case study</a>
+                <a class="figma-link" href="https://www.figma.com/design/t0SvxwO3AaVzpE6rInUGWn/Untitled?node-id=140-3" target="_blank" rel="noreferrer">Figma</a>
+              </div>
             </article>
             <article
               class="project-card reveal"
             >
-              <div class="figma-board">
-                <iframe
-                  title="Mars colony game Figma overview"
-                  loading="lazy"
-                  src="https://www.figma.com/embed?embed_host=share&amp;url=https://www.figma.com/design/t0SvxwO3AaVzpE6rInUGWn/Untitled?node-id=0-1%26t=Z35XHmCqCMeNx8gg-1"
-                ></iframe>
+              <div class="work-board doka-cover-board">
+                <img class="doka-shot doka-shot-main" src="assets/portfolio/doka-learning.png" alt="Doka AI learning chat workspace" />
               </div>
-              <span>02 / Mars Colony</span>
-              <h3>Game</h3>
-              <p>Management game interface design themed around Mars colonization, resource systems, city building, and mission progression.</p>
-              <a class="figma-link" href="https://www.figma.com/design/t0SvxwO3AaVzpE6rInUGWn/Untitled?node-id=0-1&t=Z35XHmCqCMeNx8gg-1" target="_blank" rel="noreferrer">Open Figma</a>
-            </article>
-            <article
-              class="project-card reveal"
-            >
-              <div class="figma-board">
-                <iframe
-                  title="AI reading and learning Figma overview"
-                  loading="lazy"
-                  src="https://www.figma.com/embed?embed_host=share&amp;url=https://www.figma.com/design/VdfEo9XPVJdnZQ3QLS8lNU/Customizable-AI-Chat-Interface-UI-Design-for-Mobile-and-Web-Applications---Free-Download--Community-?node-id=3-2%26t=cKDvy38WkDFmQstf-1"
-                ></iframe>
+              <span>03 / AI Learning + Writing</span>
+              <h3>Doka AI Learning + Writing Assistant</h3>
+              <p>An AI chat interface for learning and academic writing, connecting conversations, file history, reference search, and outline generation.</p>
+              <div class="project-card-actions">
+                <a class="figma-link" href="doka-ai.html">View case study</a>
+                <a class="figma-link" href="https://www.figma.com/design/VdfEo9XPVJdnZQ3QLS8lNU/Customizable-AI-Chat-Interface-UI-Design-for-Mobile-and-Web-Applications---Free-Download--Community-?node-id=3-2&p=f&t=jCurblaVIuo7Us1K-0" target="_blank" rel="noreferrer">Figma</a>
               </div>
-              <span>03 / AI Learning</span>
-              <h3>UI design of AI for reading and learning</h3>
-              <p>AI reading and learning tool interface design focused on conversational assistance, content organization, and clear user flows.</p>
-              <a class="figma-link" href="https://www.figma.com/design/VdfEo9XPVJdnZQ3QLS8lNU/Customizable-AI-Chat-Interface-UI-Design-for-Mobile-and-Web-Applications---Free-Download--Community-?node-id=3-2&t=cKDvy38WkDFmQstf-1" target="_blank" rel="noreferrer">Open Figma</a>
-            </article>
-            <article
-              class="project-card reveal"
-            >
-              <div class="figma-board">
-                <iframe
-                  title="AI 3D modeling web design Figma overview"
-                  loading="lazy"
-                  src="https://www.figma.com/embed?embed_host=share&amp;url=https://www.figma.com/design/3Ecux6KtdsMKQU7xspeIly/Sketch3D.ai_web-prototyping?node-id=0-1%26t=gYchLxsprISB47wT-1"
-                ></iframe>
-              </div>
-              <span>05 / AI 3D Modeling</span>
-              <h3>Web design of AI for 3D modeling</h3>
-              <p>Website design for an AI 3D modeling product, connecting product storytelling, feature presentation, and conversion flows.</p>
-              <a class="figma-link" href="https://www.figma.com/design/3Ecux6KtdsMKQU7xspeIly/Sketch3D.ai_web-prototyping?node-id=0-1&t=gYchLxsprISB47wT-1" target="_blank" rel="noreferrer">Open Figma</a>
             </article>
           </section>
           <section class="portfolio-panel" data-category-panel="visual">
-            <div class="filter-bar">
-              <span>Processing</span><span>Arduino</span><span>TouchDesigner</span><span>Blender</span>
-              <span>Poster</span><span>Characters</span><span>Photography</span><span>Installation</span>
-            </div>
-            <div class="live-sketches">
-              <canvas class="mini-sketch" data-sketch="flow" aria-label="Flow Field sketch"></canvas>
-              <canvas class="mini-sketch" data-sketch="void" aria-label="Recursive Void sketch"></canvas>
-              <canvas class="mini-sketch" data-sketch="grid" aria-label="Grid Emergence sketch"></canvas>
+            <div class="portfolio-gallery">
+              <article class="media-card visual-project-card visual-info-card reveal">
+                <div class="visual-window-bar"><button class="visual-window-control visual-close" type="button" aria-label="Release alert marks"></button><button class="visual-window-control visual-minimize" type="button" aria-label="Minimize card"></button><button class="visual-window-control visual-expand" type="button" aria-label="Open PDF"></button><strong>Heterotopia.ai Info</strong></div>
+                <div class="visual-info-body">
+                  <div class="visual-file-summary">
+                    <span class="visual-file-mark">Ai</span>
+                    <div>
+                      <strong>Heterotopia.ai</strong>
+                      <small>Modified: September 15, 2025, 11:47</small>
+                    </div>
+                  </div>
+                  <button class="visual-panel-label" type="button" data-visual-toggle="general" aria-expanded="true">General</button>
+                  <div class="visual-info-topline">
+                    <span>Visual Project</span>
+                    <a href="assets/portfolio/visual-projects/heterotopia.pdf" target="_blank" rel="noreferrer">Open PDF</a>
+                  </div>
+                  <dl class="visual-meta">
+                    <div><dt>Kind</dt><dd>Photography + Adobe Illustrator</dd></div>
+                    <div><dt>Created Time</dt><dd>September 15, 2025 at 10:40</dd></div>
+                    <div><dt>Location</dt><dd>Durham Ninth Street, Durham, NC</dd></div>
+                  </dl>
+                  <div class="visual-card-utility visual-card-utility-empty" aria-hidden="true"></div>
+                  <button class="visual-panel-label visual-preview-label" type="button" data-visual-toggle="preview" aria-expanded="true">Preview</button>
+                  <div class="visual-info-preview">
+                    <img src="assets/portfolio/visual-projects/heterotopia-preview.png" alt="Heterotopia photography and Adobe Illustrator visual artwork" />
+                  </div>
+                  <button class="visual-panel-label visual-comments-label" type="button" data-visual-toggle="comments" aria-expanded="true">Comments</button>
+                  <p>A small shop on Durham Ninth Street becomes a private theater of multiplied use: restroom, resting room, reading corner, storage space, and inward shelter. The work treats this modest room as a heterotopia, a place where daily utility and mental escape overlap, letting handwritten notes, books, objects, and photographed fragments open into a quiet architecture of inner life.</p>
+                </div>
+              </article>
+              <article class="media-card visual-project-card visual-info-card reveal">
+                <div class="visual-window-bar"><button class="visual-window-control visual-close" type="button" aria-label="Release alert marks"></button><button class="visual-window-control visual-minimize" type="button" aria-label="Minimize card"></button><button class="visual-window-control visual-expand" type="button" aria-label="Open PDF"></button><strong>Disassembling.ai Info</strong></div>
+                <div class="visual-info-body">
+                  <div class="visual-file-summary">
+                    <span class="visual-file-mark">Ai</span>
+                    <div>
+                      <strong>Disassembling.ai</strong>
+                      <small>Modified: September 9, 2025, 13:50</small>
+                    </div>
+                  </div>
+                  <button class="visual-panel-label" type="button" data-visual-toggle="general" aria-expanded="true">General</button>
+                  <div class="visual-info-topline">
+                    <span>Visual Project</span>
+                    <a href="assets/portfolio/visual-projects/disassembling.pdf" target="_blank" rel="noreferrer">Open PDF</a>
+                  </div>
+                  <dl class="visual-meta">
+                    <div><dt>Kind</dt><dd>Scan + Adobe Illustrator</dd></div>
+                    <div><dt>Created Time</dt><dd>September 9, 2025 at 13:50</dd></div>
+                    <div><dt>Location</dt><dd>Durham, NC, United States</dd></div>
+                  </dl>
+                  <div class="visual-card-utility visual-card-utility-empty" aria-hidden="true"></div>
+                  <button class="visual-panel-label visual-preview-label" type="button" data-visual-toggle="preview" aria-expanded="true">Preview</button>
+                  <div class="visual-info-preview">
+                    <img src="assets/portfolio/visual-projects/disassembling-preview.png" alt="Disassembling scanned Polaroid artwork" />
+                  </div>
+                  <button class="visual-panel-label visual-comments-label" type="button" data-visual-toggle="comments" aria-expanded="true">Comments</button>
+                  <p>A Polaroid is taken apart until the image stops behaving like a flat memory and becomes material evidence. By scanning, cutting, and recomposing its paper, plastic, film, residue, and frame, the work turns instant photography into an autopsy of permanence, asking whether memory survives because it is preserved, or because it can be broken and still recognized.</p>
+                </div>
+              </article>
+              <article class="media-card visual-project-card visual-info-card reveal">
+                <div class="visual-window-bar"><button class="visual-window-control visual-close" type="button" aria-label="Release alert marks"></button><button class="visual-window-control visual-minimize" type="button" aria-label="Minimize card"></button><button class="visual-window-control visual-expand" type="button" aria-label="Open PDF"></button><strong>Stories-Seldom-Told.ai Info</strong></div>
+                <div class="visual-info-body">
+                  <div class="visual-file-summary">
+                    <span class="visual-file-mark">Ai</span>
+                    <div>
+                      <strong>Stories-Seldom-Told.ai</strong>
+                      <small>Modified: December 2, 2025, 14:28</small>
+                    </div>
+                  </div>
+                  <button class="visual-panel-label" type="button" data-visual-toggle="general" aria-expanded="true">General</button>
+                  <div class="visual-info-topline">
+                    <span>Visual Project</span>
+                    <a href="assets/portfolio/visual-projects/stories-seldom-told.pdf" target="_blank" rel="noreferrer">Open PDF</a>
+                  </div>
+                  <dl class="visual-meta">
+                    <div><dt>Kind</dt><dd>Scan + Adobe Illustrator</dd></div>
+                    <div><dt>Created Time</dt><dd>December 2, 2025 at 14:14</dd></div>
+                    <div><dt>Location</dt><dd>Durham, NC, United States</dd></div>
+                  </dl>
+                  <div class="visual-card-utility visual-audio-row">
+                    <button class="visual-audio-button" type="button" data-audio-toggle="stories-seldom-told-audio" aria-pressed="false">Play Memory Audio</button>
+                    <span>Audio layer from the multi-modal exhibition</span>
+                    <audio id="stories-seldom-told-audio" preload="metadata" src="assets/portfolio/visual-projects/audio/stories-seldom-told.m4a"></audio>
+                  </div>
+                  <button class="visual-panel-label visual-preview-label" type="button" data-visual-toggle="preview" aria-expanded="true">Preview</button>
+                  <div class="visual-info-preview">
+                    <img src="assets/portfolio/visual-projects/stories-seldom-told-preview.png" alt="Stories Seldom Told memory folding artwork" />
+                  </div>
+                  <button class="visual-panel-label visual-comments-label" type="button" data-visual-toggle="comments" aria-expanded="true">Comments</button>
+                  <p>Memory is folded, erased, damaged, and concealed, yet it resists disappearance. This work asks whether distortion can truly be achieved when the original feeling keeps returning through the cracks. Paper becomes a fragile archive: every crease, erasure, and torn surface records the effort to forget, while the image insists that what breaks in memory may still remain whole.</p>
+                </div>
+              </article>
+              <article class="media-card visual-project-card visual-info-card visual-info-card-large reveal">
+                <div class="visual-window-bar"><button class="visual-window-control visual-close" type="button" aria-label="Release alert marks"></button><button class="visual-window-control visual-minimize" type="button" aria-label="Minimize card"></button><button class="visual-window-control visual-expand" type="button" aria-label="Open gallery"></button><strong>Trap-Net.blend Info</strong></div>
+                <div class="visual-info-body">
+                  <div class="visual-file-summary">
+                    <span class="visual-file-mark visual-file-mark-blender">B</span>
+                    <div>
+                      <strong>Trap Net</strong>
+                      <small>Modified: October 7, 2025</small>
+                    </div>
+                  </div>
+                  <button class="visual-panel-label" type="button" data-visual-toggle="general" aria-expanded="true">General</button>
+                  <div class="visual-info-topline">
+                    <span>Visual Project</span>
+                    <a href="trap-net.html">Open Gallery</a>
+                  </div>
+                  <dl class="visual-meta">
+                    <div><dt>Kind</dt><dd>Installation + Blender</dd></div>
+                    <div><dt>Created Time</dt><dd>October 7, 2025</dd></div>
+                    <div><dt>Location</dt><dd>Durham, NC, United States</dd></div>
+                  </dl>
+                  <button class="visual-panel-label visual-preview-label" type="button" data-visual-toggle="preview" aria-expanded="true">Preview</button>
+                  <div class="visual-info-preview visual-installation-preview">
+                    <img class="visual-single-preview" src="assets/portfolio/installation-connector/trap-net-preview-collage.png" alt="Trap Net installation overview collage" />
+                  </div>
+                  <button class="visual-panel-label visual-comments-label" type="button" data-visual-toggle="comments" aria-expanded="true">Comments</button>
+                  <p>Connector is an installation and wearable accessory system designed in Blender around the idea of a net trap. The work maps invisible traps in everyday life: social pressure, digital information, desire, fear, and repeated patterns of judgment. Worn on the body, the accessory becomes both ornament and warning, suggesting how people can be caught by systems they cannot immediately see, gradually losing direction inside a web of influence.</p>
+                </div>
+              </article>
+              <article class="media-card visual-project-card visual-info-card visual-info-card-large reveal">
+                <div class="visual-window-bar"><button class="visual-window-control visual-close" type="button" aria-label="Release alert marks"></button><button class="visual-window-control visual-minimize" type="button" aria-label="Minimize card"></button><button class="visual-window-control visual-expand" type="button" aria-label="Open video"></button><strong>Memory-And-Tide.toe Info</strong></div>
+                <div class="visual-info-body">
+                  <div class="visual-file-summary">
+                    <span class="visual-file-mark visual-file-mark-touch">TD</span>
+                    <div>
+                      <strong>Memory-And-Tide.toe</strong>
+                      <small>Modified: November 14, 2025</small>
+                    </div>
+                  </div>
+                  <button class="visual-panel-label" type="button" data-visual-toggle="general" aria-expanded="true">General</button>
+                  <div class="visual-info-topline">
+                    <span>Visual Project</span>
+                    <a href="assets/portfolio/touchdesigner/touchdesigner-web.mp4" target="_blank" rel="noreferrer">Open Video</a>
+                  </div>
+                  <dl class="visual-meta">
+                    <div><dt>Kind</dt><dd>TouchDesigner</dd></div>
+                    <div><dt>Created Time</dt><dd>November 14, 2025</dd></div>
+                    <div><dt>Location</dt><dd>Durham, NC, United States</dd></div>
+                  </dl>
+                  <button class="visual-panel-label visual-preview-label" type="button" data-visual-toggle="preview" aria-expanded="true">Preview</button>
+                  <div class="visual-info-preview visual-video-preview">
+                    <video controls preload="metadata" poster="assets/portfolio/touchdesigner/touchdesigner-poster.jpg">
+                      <source src="assets/portfolio/touchdesigner/touchdesigner-web.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                  <button class="visual-panel-label visual-comments-label" type="button" data-visual-toggle="comments" aria-expanded="true">Comments</button>
+                  <p>A TouchDesigner memory study that treats recollection as a live visual field. The piece uses procedural motion, shifting texture, and temporal distortion to make memory feel unstable: something sensed, delayed, fragmented, and continuously rewritten through the screen.</p>
+                </div>
+              </article>
+              <article class="media-card visual-project-card visual-info-card visual-info-card-large reveal">
+                <div class="visual-window-bar"><button class="visual-window-control visual-close" type="button" aria-label="Release alert marks"></button><button class="visual-window-control visual-minimize" type="button" aria-label="Minimize card"></button><button class="visual-window-control visual-expand" type="button" aria-label="Restore card"></button><strong>Emotion-Avatar.fig Info</strong></div>
+                <div class="visual-info-body">
+                  <div class="visual-file-summary">
+                    <span class="visual-file-mark visual-file-mark-figma">Fig</span>
+                    <div>
+                      <strong>Emotion-Avatar.fig</strong>
+                      <small>Modified: 2025</small>
+                    </div>
+                  </div>
+                  <button class="visual-panel-label" type="button" data-visual-toggle="general" aria-expanded="true">General</button>
+                  <div class="visual-info-topline">
+                    <span>Visual Project</span>
+                  </div>
+                  <dl class="visual-meta">
+                    <div><dt>Kind</dt><dd>Figma Design File</dd></div>
+                    <div><dt>Created Time</dt><dd>2025</dd></div>
+                    <div><dt>Location</dt><dd>Shanghai, China</dd></div>
+                  </dl>
+                  <button class="visual-panel-label visual-preview-label" type="button" data-visual-toggle="preview" aria-expanded="true">Preview</button>
+                  <div class="visual-info-preview visual-avatar-preview">
+                    <div class="visual-preview-collage avatar-preview-collage" aria-label="Emotion Avatar preview collection">
+                      <img class="preview-main" src="assets/portfolio/avatar-main.png" alt="Emotion Avatar generated character set" />
+                      <img src="assets/portfolio/avatar-joy.jpg" alt="Joy avatar" />
+                      <img src="assets/portfolio/avatar-sad.jpg" alt="Sad avatar" />
+                      <img src="assets/portfolio/avatar-anger.jpg" alt="Anger avatar" />
+                      <img src="assets/portfolio/avatar-fear.jpg" alt="Fear avatar" />
+                      <img src="assets/portfolio/avatar-surprise.jpg" alt="Surprise avatar" />
+                      <img src="assets/portfolio/avatar-disgust.jpg" alt="Disgust avatar" />
+                    </div>
+                  </div>
+                  <button class="visual-panel-label visual-comments-label" type="button" data-visual-toggle="comments" aria-expanded="true">Comments</button>
+                  <p>A character system built around emotional archetypes, translating joy, sadness, anger, fear, surprise, and disgust into a shared visual language. The series treats emotion as a cast of presences rather than isolated expressions, using generative image-making as a way to stage inner states as characters.</p>
+                </div>
+              </article>
+              <article class="media-card visual-project-card visual-info-card visual-info-card-large reveal">
+                <div class="visual-window-bar"><button class="visual-window-control visual-close" type="button" aria-label="Release alert marks"></button><button class="visual-window-control visual-minimize" type="button" aria-label="Minimize card"></button><button class="visual-window-control visual-expand" type="button" aria-label="Open gallery"></button><strong>Project-Illustration.fig Info</strong></div>
+                <div class="visual-info-body">
+                  <div class="visual-file-summary">
+                    <span class="visual-file-mark visual-file-mark-figma">Fig</span>
+                    <div>
+                      <strong>Project-Illustration.fig</strong>
+                      <small>Modified: 2025</small>
+                    </div>
+                  </div>
+                  <button class="visual-panel-label" type="button" data-visual-toggle="general" aria-expanded="true">General</button>
+                  <div class="visual-info-topline">
+                    <span>Visual Project</span>
+                    <a href="project-illustration.html">Open Gallery</a>
+                  </div>
+                  <dl class="visual-meta">
+                    <div><dt>Kind</dt><dd>Figma Design File</dd></div>
+                    <div><dt>Created Time</dt><dd>2025</dd></div>
+                    <div><dt>Location</dt><dd>Shanghai, China</dd></div>
+                  </dl>
+                  <button class="visual-panel-label visual-preview-label" type="button" data-visual-toggle="preview" aria-expanded="true">Preview</button>
+                  <div class="visual-info-preview visual-project-board-preview">
+                    <div class="visual-preview-collage project-preview-collage" aria-label="Project Illustration preview collection">
+                      <img class="preview-main" src="assets/portfolio/project-illustration/whole-1.png" alt="Complete Project Illustration PDF board" />
+                      <img src="assets/portfolio/inner-theater.png" alt="InnerTheater project interface illustration" />
+                      <img src="assets/portfolio/guided-emotional-inquiry.png" alt="Guided Emotional Inquiry Module interface" />
+                      <img src="assets/portfolio/music-module.png" alt="Music Module interface" />
+                    </div>
+                  </div>
+                  <button class="visual-panel-label visual-comments-label" type="button" data-visual-toggle="comments" aria-expanded="true">Comments</button>
+                  <p>A curated interface illustration board for emotional performance, reflective inquiry, AI music generation, and staged interaction modules. The project translates research logic into a visual system, making abstract emotional processes readable through scenes, characters, controls, and modular interaction flows.</p>
+                </div>
+              </article>
             </div>
           </section>
           <section class="portfolio-panel" data-category-panel="vibe">
-            <div class="vibe-list">
-              <article><span>01</span><p>AI tool landing pages and coded prototypes</p></article>
-              <article><span>02</span><p>Processing sketches for visual interaction studies</p></article>
-              <article><span>03</span><p>Generative web experiments for portfolio and research narratives</p></article>
-              <article><span>04</span><p>Rapid front-end builds combining design, code, and marketing goals</p></article>
+            <div class="vibe-showcase">
+              <article class="vibe-case reveal">
+                <div class="vibe-terminal" aria-hidden="true">
+                  <div class="terminal-bar"><span></span><span></span><span></span><strong>emotion_diary_colab.ipynb</strong></div>
+                  <div class="terminal-screen">
+                    <p><span>&gt;</span> flask run --port 5001</p>
+                    <p><span>&gt;</span> loading records.json</p>
+                    <p><span>&gt;</span> analyzing emotion intensity</p>
+                    <p><span>&gt;</span> rendering mood calendar</p>
+                    <p><span>&gt;</span> public link ready</p>
+                  </div>
+                  <div class="calendar-preview">
+                    <i style="--c:#fdd835"></i><i style="--c:#42a5f5"></i><i style="--c:#ff7043"></i><i style="--c:#9ccc65"></i>
+                    <i style="--c:#d32f2f"></i><i style="--c:#26c6da"></i><i style="--c:#9ccc65"></i><i style="--c:#fdd835"></i>
+                    <i style="--c:#42a5f5"></i><i style="--c:#ff7043"></i><i style="--c:#d32f2f"></i><i style="--c:#26c6da"></i>
+                  </div>
+                </div>
+                <div class="vibe-copy">
+                  <p class="eyebrow">Vibe Coding / Python System</p>
+                  <h3>Emotion Diary Mood Calendar</h3>
+                  <p>
+                    A Flask-based emotion tracking system that records daily feelings, maps them into
+                    six emotion categories, and visualizes emotional patterns through calendar blocks,
+                    day analysis, weekly summaries, monthly insights, and emotion avatar videos.
+                  </p>
+                  <dl>
+                    <div><dt>Role</dt><dd>Creative Coder / System Designer</dd></div>
+                    <div><dt>Tools</dt><dd>Python, Flask, HTML/CSS, Colab</dd></div>
+                    <div><dt>Output</dt><dd>Mood calendar, daily analysis, summaries, and avatar video prototype</dd></div>
+                  </dl>
+                  <div class="vibe-actions">
+                    <a href="emotion-diary.html">View Project</a>
+                    <span>Records → Analysis → Calendar → Reflection</span>
+                  </div>
+                </div>
+              </article>
+              <div class="vibe-process reveal">
+                <article><span>01</span><strong>Capture</strong><p>Visitors record text, tags, and multiple emotion intensities.</p></article>
+                <article><span>02</span><strong>Analyze</strong><p>Python transforms entries into dominant emotions and intensity patterns.</p></article>
+                <article><span>03</span><strong>Visualize</strong><p>The Flask interface turns records into calendar blocks, day details, and summaries.</p></article>
+              </div>
             </div>
           </section>
         </div>
       </section>
 
       <section id="processing" class="section processing-section">
-        <div class="section-heading">
-          <p class="eyebrow">Processing</p>
-          <h2>Processing work from computation and design practice.</h2>
+        <div class="section-heading processing-heading">
+          <div>
+            <p class="eyebrow">Processing / Case Study</p>
+            <h2>Generative Studies in Motion</h2>
+          </div>
+          <p class="processing-intro">
+            An interactive experiment exploring how density, motion, and generative composition
+            shift the emotional texture of a black-and-white field.
+          </p>
+        </div>
+        <div class="project-meta-grid" aria-label="Project metadata">
+          <article><span>Role</span><strong>Creative Technologist</strong></article>
+          <article><span>Tools</span><strong>Processing / JavaScript</strong></article>
+          <article><span>Type</span><strong>Generative Art</strong></article>
+          <article><span>Year</span><strong>2025</strong></article>
         </div>
         <div class="processing-room">
-          <div class="processing-stage">
-            <canvas id="processing-canvas" aria-label="Embedded Processing-style sketch"></canvas>
+          <div class="processing-work">
+            <div class="processing-stage">
+              <div class="stage-header">
+                <span>Study 01</span>
+                <strong>Motion Density Field</strong>
+                <em id="sketch-status">Live</em>
+              </div>
+              <canvas id="processing-canvas" aria-label="Interactive generative Processing-style sketch"></canvas>
+              <div class="stage-loading" aria-hidden="true">Initializing generative field</div>
+            </div>
+            <div class="case-notes">
+              <article>
+                <span>Concept</span>
+                <p>A compact study of how repeated points, radial movement, and line tension can create a living visual atmosphere.</p>
+              </article>
+              <article>
+                <span>Interaction</span>
+                <p>Visitors can tune density and motion, pause the field, or randomize the composition to compare different states.</p>
+              </article>
+              <article>
+                <span>Process</span>
+                <p>The original Processing logic was translated into a browser canvas version while preserving the sketch-like behavior.</p>
+              </article>
+            </div>
           </div>
           <div class="processing-controls reveal">
-            <h3>Embedded Sketch</h3>
-            <p>Visitors can view the browser sketch instantly and still open the original Processing source.</p>
-            <label>Density <input id="density-control" type="range" min="16" max="90" value="42" /></label>
-            <label>Motion <input id="motion-control" type="range" min="1" max="12" value="5" /></label>
-            <button id="reset-sketch" class="button primary" type="button">Reset Sketch</button>
-            <a class="button secondary" href="processing/JuniceSketch.pde" target="_blank" rel="noreferrer">Open .pde Source</a>
+            <div>
+              <p class="eyebrow">Control Surface</p>
+              <h3>Interactive Controls</h3>
+              <p>Adjust the parameters and observe how the composition responds.</p>
+            </div>
+            <label class="range-field">
+              <span><strong>Density</strong><output id="density-value" for="density-control">42</output></span>
+              <input id="density-control" type="range" min="16" max="90" value="42" aria-describedby="density-scale" />
+              <em id="density-scale"><span>Sparse</span><span>Dense</span></em>
+            </label>
+            <label class="range-field">
+              <span><strong>Motion</strong><output id="motion-value" for="motion-control">5</output></span>
+              <input id="motion-control" type="range" min="1" max="12" value="5" aria-describedby="motion-scale" />
+              <em id="motion-scale"><span>Calm</span><span>Fast</span></em>
+            </label>
+            <div class="control-actions">
+              <button id="randomize-sketch" class="button primary" type="button">Randomize</button>
+              <button id="pause-sketch" class="button secondary" type="button" aria-pressed="false">Pause</button>
+              <button id="reset-sketch" class="text-action" type="button">Reset</button>
+            </div>
+            <div class="source-links">
+              <a href="processing/JuniceSketch.pde" target="_blank" rel="noreferrer">View Source</a>
+              <a href="https://github.com/JuniceLin/Junice-website" target="_blank" rel="noreferrer">GitHub</a>
+              <span>Project Notes / Coming Soon</span>
+            </div>
+          </div>
+        </div>
+        <div class="processing-archive">
+          <div class="processing-archive-heading">
+            <p class="eyebrow">Processing Works Archive</p>
+            <h3>Code sketches as systems, games, portraits, and emotional interfaces.</h3>
+            <p>Selected Processing projects from creative coding practice, presented with original documentation, videos, source files, and short case descriptions.</p>
+          </div>
+          <div class="processing-project-grid">
+            <article class="processing-project-card reveal">
+              <figure>
+                <canvas class="processing-live-canvas" data-processing-demo="lion-car" data-csv="assets/processing/lion-car/data/cars.csv" tabindex="0" aria-label="Interactive Lion and Car Processing translation"></canvas>
+                <figcaption>Click to change data page. Hover the field to inspect the living data grid.</figcaption>
+              </figure>
+              <div class="processing-project-copy">
+                <span>01 / Data Visualization</span>
+                <h4>Lion and Car</h4>
+                <p>A car dataset is translated into a grid of animated lions. Each lion represents one vehicle, with visual attributes mapped from MPG, horsepower, cylinders, weight, origin, and year.</p>
+                <ul>
+                  <li>Hover reveals car details near the cursor.</li>
+                  <li>Click switches pages through the dataset.</li>
+                  <li>Motion and blinking make the data feel more alive.</li>
+                </ul>
+                <div class="processing-project-actions">
+                  <a href="assets/processing/lion-car/design-journal.pdf" target="_blank" rel="noreferrer">Open PDF</a>
+                  <a href="assets/processing/lion-car/lion-and-car.pde" target="_blank" rel="noreferrer">View Code</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="processing-project-card reveal">
+              <figure>
+                <canvas class="processing-live-canvas" data-processing-demo="kaleidoscope" data-image="assets/processing/kaleidoscope/image.jpg" tabindex="0" aria-label="Interactive Kaleidoscope Processing translation"></canvas>
+                <figcaption>Move across the stage to shift symmetry. Click to reseed the mirrored image field.</figcaption>
+              </figure>
+              <div class="processing-project-copy">
+                <span>02 / Image Transformation</span>
+                <h4>Kaleidoscope</h4>
+                <p>An uploaded image becomes a kaleidoscopic field through tile extraction, symmetry, copying, and repeated image transformation.</p>
+                <ul>
+                  <li>Mouse buttons switch between original, tiled, and symmetric views.</li>
+                  <li>Arrow keys adjust tile size and visual granularity.</li>
+                  <li>The interaction recreates the shifting perspective of a childhood kaleidoscope.</li>
+                </ul>
+                <div class="processing-project-actions">
+                  <a href="assets/processing/kaleidoscope/design-journal.pdf" target="_blank" rel="noreferrer">Open PDF</a>
+                  <a href="assets/processing/kaleidoscope/kaleidoscope.pde" target="_blank" rel="noreferrer">View Code</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="processing-project-card reveal">
+              <figure>
+                <canvas class="processing-live-canvas" data-processing-demo="bleeding-mood" tabindex="0" aria-label="Interactive Bleeding Mood Processing translation"></canvas>
+                <figcaption>Hover to calm the eyes. Click to fracture the emotional pattern.</figcaption>
+              </figure>
+              <div class="processing-project-copy">
+                <span>03 / Emotional System</span>
+                <h4>Bleeding Mood</h4>
+                <p>A symbolic interactive pattern made from eyes, tears, and hearts. The work visualizes negative emotion as something wounded, visible, and still deserving protection.</p>
+                <ul>
+                  <li>Eyes form the hidden word BLOOD in the background.</li>
+                  <li>Hover changes pupils into a calmer blue-black state.</li>
+                  <li>Clicking hearts reveals a broken emotional state.</li>
+                </ul>
+                <div class="processing-project-actions">
+                  <a href="assets/processing/bleeding-mood/design-journal.pdf" target="_blank" rel="noreferrer">Open PDF</a>
+                  <a href="assets/processing/bleeding-mood/bleeding-mood.pde" target="_blank" rel="noreferrer">View Code</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="processing-project-card reveal">
+              <figure>
+                <canvas class="processing-live-canvas" data-processing-demo="portraiture" data-image="assets/processing/portraiture/image.jpg" tabindex="0" aria-label="Interactive Portraiture Processing translation"></canvas>
+                <figcaption>Move to distort the spiral portrait. Click to switch between line and particle modes.</figcaption>
+              </figure>
+              <div class="processing-project-copy">
+                <span>04 / Parametric Portrait</span>
+                <h4>Portraiture</h4>
+                <p>A portrait study built from dense points, circles, and spiral-based marks. Image color, mouse position, and mathematical distortion work together to reconstruct a face.</p>
+                <ul>
+                  <li>Click switches between point and circle modes.</li>
+                  <li>Mouse position changes spiral distortion.</li>
+                  <li>Color values from the source image control the generated mark structure.</li>
+                </ul>
+                <div class="processing-project-actions">
+                  <a href="assets/processing/portraiture/design-journal.pdf" target="_blank" rel="noreferrer">Open PDF</a>
+                  <a href="assets/processing/portraiture/portraiture.pde" target="_blank" rel="noreferrer">View Code</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="processing-project-card reveal">
+              <figure>
+                <canvas class="processing-live-canvas" data-processing-demo="assignment-shooter" data-bg="assets/processing/assignment-shooter/background.jpg" data-player="assets/processing/assignment-shooter/sprites/player.png" data-enemy="assets/processing/assignment-shooter/sprites/enemy.png" data-bullet="assets/processing/assignment-shooter/sprites/bullet.png" data-enemy-bullet="assets/processing/assignment-shooter/sprites/enemyBullet.png" data-ammo="assets/processing/assignment-shooter/sprites/ammo.png" data-score-sound="assets/processing/assignment-shooter/sprites/score.wav" data-hit-sound="assets/processing/assignment-shooter/sprites/hit.wav" tabindex="0" aria-label="Playable Assignments Shooter Processing translation"></canvas>
+                <figcaption>Use arrow keys or pointer movement. Press space/click to shoot assignments back.</figcaption>
+              </figure>
+              <div class="processing-project-copy">
+                <span>05 / Game Prototype</span>
+                <h4>Assignments Shooter</h4>
+                <p>A campus-themed shooter game that turns school pressure into a playful arcade system. Professors send assignments, and the player collects brain bullets to fight back with completed work.</p>
+                <ul>
+                  <li>Two modes: Challenge Mode and Score Mode.</li>
+                  <li>Keyboard movement and spacebar shooting create fast play.</li>
+                  <li>Resources, enemies, lives, score, and timed goals structure the game loop.</li>
+                </ul>
+                <div class="processing-project-actions">
+                  <a href="assets/processing/assignment-shooter/design-journal.pdf" target="_blank" rel="noreferrer">Open PDF</a>
+                  <a href="assets/processing/assignment-shooter/assignment-shooter.pde" target="_blank" rel="noreferrer">View Code</a>
+                </div>
+              </div>
+            </article>
+
           </div>
         </div>
       </section>
