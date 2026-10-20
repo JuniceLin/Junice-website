@@ -898,6 +898,7 @@ function updateProcessingModeLabel(canvas, state) {
 function initProcessingDemo(canvas) {
   const state = {
     demo: canvas.dataset.processingDemo,
+    isVisible: false,
     frame: 0,
     mouseX: 0.5,
     mouseY: 0.5,
@@ -1676,10 +1677,11 @@ function drawProcessingDemo(canvas) {
 
 function animateProcessingDemos() {
   processingCanvases.forEach((canvas) => {
+    const state = processingDemoStates.get(canvas);
+    if (!state?.isVisible) return;
     try {
       drawProcessingDemo(canvas);
     } catch (error) {
-      const state = processingDemoStates.get(canvas);
       if (state && !state.failed) {
         state.failed = true;
         const ctx = canvas.getContext("2d");
@@ -1697,7 +1699,37 @@ function animateProcessingDemos() {
 }
 
 if (processingCanvases.length) {
-  processingCanvases.forEach(initProcessingDemo);
+  const activateProcessingCanvas = (canvas) => {
+    if (!processingDemoStates.has(canvas)) {
+      initProcessingDemo(canvas);
+    }
+    const state = processingDemoStates.get(canvas);
+    state.isVisible = true;
+    drawProcessingDemo(canvas);
+  };
+
+  if ("IntersectionObserver" in window) {
+    const processingVisibilityObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const canvas = entry.target;
+          if (entry.isIntersecting) {
+            activateProcessingCanvas(canvas);
+            return;
+          }
+          const state = processingDemoStates.get(canvas);
+          if (state) {
+            state.isVisible = false;
+            state.keys.clear();
+          }
+        });
+      },
+      { rootMargin: "280px 0px", threshold: 0.01 },
+    );
+    processingCanvases.forEach((canvas) => processingVisibilityObserver.observe(canvas));
+  } else {
+    processingCanvases.forEach(activateProcessingCanvas);
+  }
 
   const routeProcessingKey = (event, pressed) => {
     const canvas = document.activeElement;
