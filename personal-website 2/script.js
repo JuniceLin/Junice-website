@@ -1,7 +1,7 @@
 const ambientCanvas = document.querySelector("#ambient-canvas");
 const ambientCtx = ambientCanvas.getContext("2d");
 const processingCanvas = document.querySelector("#processing-canvas");
-const processingCtx = processingCanvas.getContext("2d");
+const processingCtx = processingCanvas?.getContext("2d") || null;
 const densityControl = document.querySelector("#density-control");
 const motionControl = document.querySelector("#motion-control");
 const resetButton = document.querySelector("#reset-sketch");
@@ -25,6 +25,7 @@ const transitionTitle = document.querySelector(".transition-title");
 const profilePhoto = document.querySelector(".profile-photo");
 const heroTitle = document.querySelector(".glitch-title");
 const heroEmail = document.querySelector(".hero-email");
+const contactEmailButtons = document.querySelectorAll("[data-copy-email]");
 const heroOrbit = document.querySelector(".hero-orbit");
 const orbitRings = document.querySelector(".orbit-rings");
 const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -46,12 +47,13 @@ let processingFrame = null;
 let activeSectionId = location.hash ? location.hash.slice(1) : "home";
 let transitionRunning = false;
 let queuedTransition = null;
-let lastWheelAt = 0;
-let wheelBoundaryDelta = 0;
 let wheelBoundaryDirection = 0;
-let wheelBoundaryReset = null;
+let wheelBoundaryReady = false;
+let wheelGestureEndTimer = null;
 let touchStartY = 0;
 let touchStartX = 0;
+let touchBoundaryDirection = 0;
+let touchBoundaryAt = 0;
 
 const sectionScrollPositions = new Map();
 
@@ -150,6 +152,9 @@ function getSectionDirection(nextId) {
 }
 
 function setActiveSection(id) {
+  resetWheelBoundary();
+  touchBoundaryDirection = 0;
+  touchBoundaryAt = 0;
   activeSectionId = id || "home";
   if (activeSectionId !== "home") resetHeroOrbitErase();
   document.body.classList.toggle("is-processing", activeSectionId === "processing");
@@ -247,31 +252,33 @@ function releaseProfileStars() {
   }
 }
 
-function copyEmailToClipboard() {
-  const email = heroEmail?.dataset.email;
+function copyEmailToClipboard(email = heroEmail?.dataset.email) {
   if (!email) return;
+  const fallbackCopy = () => {
+    const textarea = document.createElement("textarea");
+    textarea.value = email;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+  };
   if (navigator.clipboard?.writeText) {
-    navigator.clipboard.writeText(email).catch(() => {});
-    return;
+    navigator.clipboard.writeText(email).catch(fallbackCopy);
+  } else {
+    fallbackCopy();
   }
-  const textarea = document.createElement("textarea");
-  textarea.value = email;
-  textarea.setAttribute("readonly", "");
-  textarea.style.position = "fixed";
-  textarea.style.opacity = "0";
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand("copy");
-  textarea.remove();
 }
 
-function showEmailCopiedState() {
-  if (!heroEmail) return;
-  const status = heroEmail.querySelector("em");
-  heroEmail.classList.add("is-copied");
+function showEmailCopiedState(target = heroEmail) {
+  if (!target) return;
+  const status = target.querySelector("em");
+  target.classList.add("is-copied");
   if (status) status.textContent = "Copied";
   window.setTimeout(() => {
-    heroEmail.classList.remove("is-copied");
+    target.classList.remove("is-copied");
     if (status) status.textContent = "Click to copy";
   }, 1400);
 }
@@ -616,11 +623,11 @@ function navigateDeck(direction, trigger) {
 }
 
 function resetWheelBoundary() {
-  wheelBoundaryDelta = 0;
   wheelBoundaryDirection = 0;
-  if (wheelBoundaryReset) {
-    window.clearTimeout(wheelBoundaryReset);
-    wheelBoundaryReset = null;
+  wheelBoundaryReady = false;
+  if (wheelGestureEndTimer) {
+    window.clearTimeout(wheelGestureEndTimer);
+    wheelGestureEndTimer = null;
   }
 }
 
@@ -639,37 +646,36 @@ window.addEventListener(
       return;
     }
 
-    const now = Date.now();
     const direction = event.deltaY > 0 ? 1 : -1;
-
-    if (now - lastWheelAt < 1250) {
-      event.preventDefault();
-      return;
-    }
 
     event.preventDefault();
 
     if (wheelBoundaryDirection !== direction) {
-      wheelBoundaryDelta = 0;
+      resetWheelBoundary();
       wheelBoundaryDirection = direction;
     }
 
-    wheelBoundaryDelta += Math.min(Math.abs(event.deltaY), 120);
-    if (wheelBoundaryReset) window.clearTimeout(wheelBoundaryReset);
-    wheelBoundaryReset = window.setTimeout(resetWheelBoundary, 520);
+    if (wheelBoundaryReady) {
+      resetWheelBoundary();
+      navigateDeck(direction, event.target);
+      return;
+    }
 
-    if (wheelBoundaryDelta < 280) return;
-
-    lastWheelAt = now;
-    resetWheelBoundary();
-    navigateDeck(direction, event.target);
+    if (wheelGestureEndTimer) window.clearTimeout(wheelGestureEndTimer);
+    wheelGestureEndTimer = window.setTimeout(() => {
+      wheelBoundaryReady = true;
+      wheelGestureEndTimer = null;
+    }, 80);
   },
   { passive: false },
 );
 
 window.addEventListener("keydown", (event) => {
-  const tagName = document.activeElement?.tagName;
-  if (["INPUT", "TEXTAREA", "SELECT"].includes(tagName)) return;
+  const activeElement = document.activeElement;
+  const tagName = activeElement?.tagName;
+  if (event.defaultPrevented) return;
+  if (["INPUT", "TEXTAREA", "SELECT", "BUTTON", "A", "VIDEO", "AUDIO"].includes(tagName)) return;
+  if (activeElement?.classList?.contains("processing-live-canvas")) return;
 
   if (["ArrowDown", "PageDown", " "].includes(event.key)) {
     event.preventDefault();
@@ -697,8 +703,26 @@ window.addEventListener("touchend", (event) => {
   const deltaY = touchStartY - touch.clientY;
   const deltaX = touchStartX - touch.clientX;
   if (Math.abs(deltaY) < 110 || Math.abs(deltaY) < Math.abs(deltaX) * 1.35) return;
-  if (canScrollCurrentSection(deltaY)) return;
-  navigateDeck(deltaY > 0 ? 1 : -1, event.target);
+  if (canScrollCurrentSection(deltaY)) {
+    touchBoundaryDirection = 0;
+    touchBoundaryAt = 0;
+    return;
+  }
+
+  const direction = deltaY > 0 ? 1 : -1;
+  const now = Date.now();
+  const isFreshBoundarySwipe = touchBoundaryDirection !== direction
+    || now > touchBoundaryAt + 4000;
+
+  if (isFreshBoundarySwipe) {
+    touchBoundaryDirection = direction;
+    touchBoundaryAt = now;
+    return;
+  }
+
+  touchBoundaryDirection = 0;
+  touchBoundaryAt = 0;
+  navigateDeck(direction, event.target);
 }, { passive: true });
 
 portfolioTabs.forEach((tab) => {
@@ -865,6 +889,12 @@ function fitProcessingCanvas(canvas) {
   return { width, height, dpr };
 }
 
+function updateProcessingModeLabel(canvas, state) {
+  const label = canvas.closest("figure")?.querySelector("[data-processing-mode]");
+  if (!label || state.demo !== "portraiture") return;
+  label.textContent = ["Particle portrait", "Vector threads", "Scanline split"][state.mode] || "Particle portrait";
+}
+
 function initProcessingDemo(canvas) {
   const state = {
     demo: canvas.dataset.processingDemo,
@@ -898,6 +928,8 @@ function initProcessingDemo(canvas) {
     sprites: {},
     sounds: {}
   };
+  const gameStatus = canvas.closest("figure")?.querySelector(".processing-game-status");
+  const projectCard = canvas.closest(".processing-project-card");
 
   state.image = loadProcessingImage(canvas.dataset.image);
   state.bg = loadProcessingImage(canvas.dataset.bg);
@@ -949,6 +981,9 @@ function initProcessingDemo(canvas) {
   canvas.addEventListener("pointerdown", (event) => {
     updatePointer(event);
     canvas.focus({ preventScroll: true });
+    if (state.demo === "assignment-shooter" && gameStatus) {
+      gameStatus.textContent = "Keyboard active — arrows / WASD + Space";
+    }
     state.clicked += 1;
     if (state.demo === "lion-car") {
       const totalPages = Math.max(1, Math.ceil((state.csvRows.length || 70) / 35));
@@ -957,6 +992,7 @@ function initProcessingDemo(canvas) {
       handleShooterPointer(state);
     } else {
       state.mode = (state.mode + 1) % 3;
+      updateProcessingModeLabel(canvas, state);
     }
     drawProcessingDemo(canvas);
   });
@@ -966,20 +1002,81 @@ function initProcessingDemo(canvas) {
   });
 
   canvas.addEventListener("keydown", (event) => {
-    if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", " "].includes(event.key)) {
+    const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+    const gameKeys = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "w", "a", "s", "d", " "];
+    if (state.demo === "portraiture" && ["1", "2", "3"].includes(key)) {
       event.preventDefault();
-      state.keys.add(event.key);
-      if (event.key === " " && state.demo === "assignment-shooter") {
+      event.stopPropagation();
+      state.mode = Number(key) - 1;
+      updateProcessingModeLabel(canvas, state);
+      drawProcessingDemo(canvas);
+      return;
+    }
+    if (gameKeys.includes(key)) {
+      event.preventDefault();
+      event.stopPropagation();
+      state.keys.add(key);
+      if (key === " " && state.demo === "assignment-shooter") {
         shooterFire(state);
       }
     }
   });
 
   canvas.addEventListener("keyup", (event) => {
-    state.keys.delete(event.key);
+    const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+    if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "w", "a", "s", "d", " "].includes(key)) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    state.keys.delete(key);
   });
 
+  if (state.demo === "assignment-shooter") {
+    canvas.addEventListener("focus", () => {
+      if (gameStatus) gameStatus.textContent = "Keyboard active — arrows / WASD + Space";
+    });
+    canvas.addEventListener("blur", () => {
+      state.keys.clear();
+      if (gameStatus) gameStatus.textContent = "Click game to activate keyboard";
+    });
+
+    projectCard?.querySelectorAll("[data-game-start]").forEach((button) => {
+      button.addEventListener("click", () => {
+        state.shooterMode = button.dataset.gameStart === "score" ? "score" : "challenge";
+        resetShooterGame(state);
+        canvas.focus({ preventScroll: true });
+        if (gameStatus) {
+          gameStatus.textContent = `${state.shooterMode === "score" ? "Score" : "Challenge"} mode — controls active`;
+        }
+        drawProcessingDemo(canvas);
+      });
+    });
+
+    projectCard?.querySelectorAll("[data-game-action]").forEach((button) => {
+      button.addEventListener("pointerdown", (event) => {
+        event.preventDefault();
+        const action = button.dataset.gameAction;
+        const step = 0.075;
+        if (state.gameMode !== "play") {
+          state.shooterMode = "challenge";
+          resetShooterGame(state);
+        }
+        if (action === "left") state.player.x -= step;
+        if (action === "right") state.player.x += step;
+        if (action === "up") state.player.y -= step;
+        if (action === "down") state.player.y += step;
+        if (action === "fire") shooterFire(state);
+        state.player.x = Math.min(0.95, Math.max(0.05, state.player.x));
+        state.player.y = Math.min(0.94, Math.max(0.2, state.player.y));
+        canvas.focus({ preventScroll: true });
+        if (gameStatus) gameStatus.textContent = "Screen controls active — keyboard also available";
+        drawProcessingDemo(canvas);
+      });
+    });
+  }
+
   processingDemoStates.set(canvas, state);
+  updateProcessingModeLabel(canvas, state);
 }
 
 function roundedRectPath(ctx, x, y, w, h, r) {
@@ -1227,49 +1324,102 @@ function drawBleedingMood(ctx, state, width, height) {
 function drawPortrait(ctx, state, width, height, spiralOnly = false) {
   ctx.fillStyle = "#fff";
   ctx.fillRect(0, 0, width, height);
-  let sample = null;
-  if (state.image?.complete) {
-    if (!state.sampleCanvas || state.sampleCanvas.width !== width || state.sampleCanvas.height !== height) {
-      state.sampleCanvas = document.createElement("canvas");
-      state.sampleCanvas.width = width;
-      state.sampleCanvas.height = height;
-      const sampleCtx = state.sampleCanvas.getContext("2d", { willReadFrequently: true });
-      sampleCtx.drawImage(state.image, 0, 0, width, height);
-      state.sampleData = sampleCtx.getImageData(0, 0, width, height).data;
-    }
-    sample = state.sampleData;
+  if (!state.image?.complete || !state.image.naturalWidth) {
+    ctx.fillStyle = "#161616";
+    ctx.font = `${Math.max(14, width * 0.02)}px IBM Plex Mono, monospace`;
+    ctx.textAlign = "center";
+    ctx.fillText("Loading original portrait…", width / 2, height / 2);
+    return;
   }
-  const cx = width / 2;
-  const cy = height / 2;
-  const count = spiralOnly ? 2400 : 1700;
-  ctx.beginPath();
-  ctx.noFill;
-  for (let i = 0; i < count; i += 1) {
-    const t = i * (spiralOnly ? 0.52 : 0.38);
-    const adj = Math.pow(t + 1, state.mouseX * 0.55);
-    const base = Math.min(width, height) * (spiralOnly ? 0.00042 : 0.00058);
-    const r = t * base + Math.sin(t * 0.018 + state.mouseY * 8) * adj * 0.002;
-    const a = t * 0.095;
-    const warp = Math.sin(a * 3 + state.mouseX * 8) * (spiralOnly ? 6 : 14) * state.mouseY;
-    const x = cx + Math.cos(a) * (r + warp);
-    const y = cy + Math.sin(a) * (r - warp);
-    const sx = Math.max(0, Math.min(width - 1, Math.floor(x)));
-    const sy = Math.max(0, Math.min(height - 1, Math.floor(y)));
-    const offset = (sy * width + sx) * 4;
-    const rr = sample ? sample[offset] : 20;
-    const gg = sample ? sample[offset + 1] : 20;
-    const bb = sample ? sample[offset + 2] : 20;
-    ctx.strokeStyle = `rgba(${rr},${gg},${bb},0.92)`;
-    ctx.fillStyle = `rgba(${rr},${gg},${bb},0.92)`;
-    if (state.mode === 1 || spiralOnly) {
-      ctx.fillRect(x, y, spiralOnly ? 0.9 : 1.3, spiralOnly ? 0.9 : 1.3);
-    } else {
+
+  if (!state.sampleCanvas || state.sampleCanvas.width !== width || state.sampleCanvas.height !== height) {
+    state.sampleCanvas = document.createElement("canvas");
+    state.sampleCanvas.width = width;
+    state.sampleCanvas.height = height;
+    const sampleCtx = state.sampleCanvas.getContext("2d", { willReadFrequently: true });
+    const scale = Math.max(width / state.image.naturalWidth, height / state.image.naturalHeight);
+    const drawWidth = state.image.naturalWidth * scale;
+    const drawHeight = state.image.naturalHeight * scale;
+    sampleCtx.fillStyle = "#f5f5f1";
+    sampleCtx.fillRect(0, 0, width, height);
+    sampleCtx.drawImage(state.image, (width - drawWidth) / 2, (height - drawHeight) / 2, drawWidth, drawHeight);
+  }
+
+  const pointerX = state.mouseX * width;
+  const pointerY = state.mouseY * height;
+  const minSide = Math.min(width, height);
+  const frame = state.frame;
+
+  if (state.mode === 2) {
+    const bandHeight = Math.max(5, Math.round(height / 92));
+    const direction = state.mouseX < 0.5 ? -1 : 1;
+    const amplitude = direction * width * (0.025 + Math.abs(state.mouseX - 0.5) * 0.2);
+    const phase = state.mouseY * Math.PI * 4 + frame * 0.018;
+    for (let y = 0; y < height; y += bandHeight) {
+      const distance = Math.abs(y - pointerY) / height;
+      const focus = Math.max(0, 1 - distance * 2.8);
+      const shift = Math.sin(y * 0.032 + phase) * amplitude * (0.18 + focus * 0.82);
+      ctx.drawImage(state.sampleCanvas, 0, y, width, bandHeight, shift, y, width, bandHeight);
+    }
+    ctx.globalCompositeOperation = "screen";
+    ctx.globalAlpha = 0.22;
+    ctx.drawImage(state.sampleCanvas, (state.mouseX - 0.5) * 22, 0, width, height);
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = "source-over";
+    return;
+  }
+
+  if (state.mode === 1) {
+    ctx.save();
+    ctx.filter = "grayscale(0.55) contrast(1.08)";
+    ctx.globalAlpha = 0.88;
+    ctx.drawImage(state.sampleCanvas, 0, 0);
+    ctx.restore();
+    const step = Math.max(10, Math.round(minSide / 42));
+    ctx.lineCap = "round";
+    for (let y = step / 2; y < height; y += step) {
+      for (let x = step / 2; x < width; x += step) {
+        const distance = Math.hypot(x - pointerX, y - pointerY);
+        const influence = Math.max(0, 1 - distance / (minSide * 0.36));
+        const angle = Math.atan2(y - pointerY, x - pointerX) + Math.sin(frame * 0.018 + x * 0.014) * (0.25 + influence);
+        const length = step * (0.5 + influence * 2.1);
+        const red = 30 + Math.round((x / width) * 170);
+        const blue = 60 + Math.round((y / height) * 170);
+        ctx.strokeStyle = `rgba(${red},42,${blue},${0.25 + influence * 0.62})`;
+        ctx.lineWidth = Math.max(1, step * 0.1);
+        ctx.beginPath();
+        ctx.moveTo(x - Math.cos(angle) * length * 0.5, y - Math.sin(angle) * length * 0.5);
+        ctx.lineTo(x + Math.cos(angle) * length * 0.5, y + Math.sin(angle) * length * 0.5);
+        ctx.stroke();
+      }
+    }
+    return;
+  }
+
+  ctx.save();
+  ctx.filter = "contrast(1.08) saturate(0.82)";
+  ctx.globalAlpha = 0.92;
+  ctx.drawImage(state.sampleCanvas, 0, 0);
+  ctx.restore();
+
+  const step = Math.max(8, Math.round(minSide / 48));
+  ctx.globalCompositeOperation = "overlay";
+  for (let y = step / 2; y < height; y += step) {
+    for (let x = step / 2; x < width; x += step) {
+      const distance = Math.hypot(x - pointerX, y - pointerY);
+      const influence = Math.max(0, 1 - distance / (minSide * 0.32));
+      const wave = Math.sin(y * 0.025 + frame * 0.024) * influence * step * 2.2;
+      const drift = (state.mouseX - 0.5) * influence * step * 3.5;
+      const radius = step * (0.14 + ((x + y) / step % 3) * 0.07 + influence * 0.3);
+      ctx.fillStyle = (Math.round(x / step + y / step) % 2 === 0)
+        ? `rgba(255,255,255,${0.16 + influence * 0.34})`
+        : `rgba(16,16,16,${0.14 + influence * 0.3})`;
       ctx.beginPath();
-      ctx.moveTo(x, y);
-      ctx.lineTo(x + Math.cos(a + 1.2) * 5, y + Math.sin(a + 1.2) * 5);
-      ctx.stroke();
+      ctx.arc(x + wave + drift, y, Math.max(1, radius), 0, Math.PI * 2);
+      ctx.fill();
     }
   }
+  ctx.globalCompositeOperation = "source-over";
 }
 
 function shooterFire(state) {
@@ -1396,10 +1546,10 @@ function drawAssignmentShooter(ctx, state, width, height) {
   }
 
   const speed = 0.011;
-  if (state.keys.has("ArrowLeft")) state.player.x -= speed;
-  if (state.keys.has("ArrowRight")) state.player.x += speed;
-  if (state.keys.has("ArrowUp")) state.player.y -= speed;
-  if (state.keys.has("ArrowDown")) state.player.y += speed;
+  if (state.keys.has("ArrowLeft") || state.keys.has("a")) state.player.x -= speed;
+  if (state.keys.has("ArrowRight") || state.keys.has("d")) state.player.x += speed;
+  if (state.keys.has("ArrowUp") || state.keys.has("w")) state.player.y -= speed;
+  if (state.keys.has("ArrowDown") || state.keys.has("s")) state.player.y += speed;
   state.player.x = Math.min(0.95, Math.max(0.05, state.player.x));
   state.player.y = Math.min(0.94, Math.max(0.2, state.player.y));
 
@@ -1548,6 +1698,37 @@ function animateProcessingDemos() {
 
 if (processingCanvases.length) {
   processingCanvases.forEach(initProcessingDemo);
+
+  const routeProcessingKey = (event, pressed) => {
+    const canvas = document.activeElement;
+    if (!canvas?.classList?.contains("processing-live-canvas")) return;
+    const state = processingDemoStates.get(canvas);
+    if (!state) return;
+    const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+
+    if (state.demo === "portraiture" && pressed && ["1", "2", "3"].includes(key)) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      state.mode = Number(key) - 1;
+      updateProcessingModeLabel(canvas, state);
+      drawProcessingDemo(canvas);
+      return;
+    }
+
+    const gameKeys = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "w", "a", "s", "d", " "];
+    if (state.demo !== "assignment-shooter" || !gameKeys.includes(key)) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    if (pressed) {
+      state.keys.add(key);
+      if (key === " " && !event.repeat) shooterFire(state);
+    } else {
+      state.keys.delete(key);
+    }
+  };
+
+  window.addEventListener("keydown", (event) => routeProcessingKey(event, true), true);
+  window.addEventListener("keyup", (event) => routeProcessingKey(event, false), true);
   window.requestAnimationFrame(animateProcessingDemos);
 }
 
@@ -1578,30 +1759,39 @@ if (heroEmail) {
   });
 }
 
-resetButton.addEventListener("click", () => {
-  densityControl.value = 42;
-  motionControl.value = 5;
-  processingSeed = Math.random() * 1000;
-  updateProcessingControls();
-  if (processingPaused) {
-    drawProcessing(performance.now());
-  }
+contactEmailButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    copyEmailToClipboard(button.dataset.copyEmail);
+    showEmailCopiedState(button);
+  });
 });
 
-pauseButton.addEventListener("click", () => {
-  setProcessingPaused(!processingPaused);
-});
-
-randomizeButton.addEventListener("click", randomizeProcessing);
-
-[densityControl, motionControl].forEach((control) => {
-  control.addEventListener("input", () => {
+if (processingCanvas && processingCtx && densityControl && motionControl && resetButton && pauseButton && randomizeButton) {
+  resetButton.addEventListener("click", () => {
+    densityControl.value = 42;
+    motionControl.value = 5;
+    processingSeed = Math.random() * 1000;
     updateProcessingControls();
     if (processingPaused) {
       drawProcessing(performance.now());
     }
   });
-});
+
+  pauseButton.addEventListener("click", () => {
+    setProcessingPaused(!processingPaused);
+  });
+
+  randomizeButton.addEventListener("click", randomizeProcessing);
+
+  [densityControl, motionControl].forEach((control) => {
+    control.addEventListener("input", () => {
+      updateProcessingControls();
+      if (processingPaused) {
+        drawProcessing(performance.now());
+      }
+    });
+  });
+}
 
 const observer = new IntersectionObserver(
   (entries) => {
@@ -1623,8 +1813,10 @@ createAmbient();
 drawAmbient();
 tickTypewriter();
 buildHeroOrbit();
-updateProcessingControls();
-processingFrame = requestAnimationFrame(drawProcessing);
+if (processingCanvas && processingCtx && densityControl && motionControl) {
+  updateProcessingControls();
+  processingFrame = requestAnimationFrame(drawProcessing);
+}
 miniSketches.forEach((canvas, index) => drawMiniSketch(canvas, index));
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
