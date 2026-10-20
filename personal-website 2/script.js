@@ -1708,12 +1708,30 @@ if (processingCanvases.length) {
     drawProcessingDemo(canvas);
   };
 
+  const updateProcessingSectionVisibility = () => {
+    const processingSectionActive = document.body.classList.contains("is-processing");
+    processingCanvases.forEach((canvas) => {
+      const state = processingDemoStates.get(canvas);
+      if (!processingSectionActive) {
+        if (state) {
+          state.isVisible = false;
+          state.keys.clear();
+        }
+        return;
+      }
+      const rect = canvas.getBoundingClientRect();
+      if (rect.bottom >= -280 && rect.top <= window.innerHeight + 280) {
+        activateProcessingCanvas(canvas);
+      }
+    });
+  };
+
   if ("IntersectionObserver" in window) {
     const processingVisibilityObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const canvas = entry.target;
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && document.body.classList.contains("is-processing")) {
             activateProcessingCanvas(canvas);
             return;
           }
@@ -1727,6 +1745,9 @@ if (processingCanvases.length) {
       { rootMargin: "280px 0px", threshold: 0.01 },
     );
     processingCanvases.forEach((canvas) => processingVisibilityObserver.observe(canvas));
+    const processingSectionObserver = new MutationObserver(updateProcessingSectionVisibility);
+    processingSectionObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    updateProcessingSectionVisibility();
   } else {
     processingCanvases.forEach(activateProcessingCanvas);
   }
