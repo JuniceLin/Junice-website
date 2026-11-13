@@ -1846,6 +1846,175 @@ main > .section.is-entering-forward {
   gap: 16px;
 }
 
+.stories-exhibition {
+  grid-column: 1 / -1;
+  min-width: 0;
+  padding: clamp(24px, 4.5vw, 72px);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: #141414;
+  color: #f0eee9;
+}
+
+.stories-exhibition-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(24px, 5vw, 88px);
+  padding-bottom: clamp(36px, 5vw, 72px);
+}
+
+.stories-exhibition-kicker {
+  margin: 0 0 22px;
+  color: #b7b6b1;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.stories-exhibition h3 {
+  max-width: 11ch;
+  margin: 0;
+  font-size: clamp(42px, 6.2vw, 94px);
+  font-weight: 600;
+  letter-spacing: -0.065em;
+  line-height: 0.94;
+  text-transform: uppercase;
+}
+
+.stories-exhibition-statement > p {
+  max-width: 56ch;
+  margin: 2px 0 30px;
+  font-size: clamp(17px, 1.8vw, 25px);
+  line-height: 1.42;
+}
+
+.stories-exhibition-media-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stories-exhibition-media-list span {
+  margin: 0;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.31);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stories-exhibition-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stories-exhibition-gallery figure {
+  min-width: 0;
+  margin: 0;
+  background: #e6e4df;
+}
+
+.stories-exhibition-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+
+.stories-exhibition-gallery figcaption {
+  min-height: 34px;
+  padding: 10px 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  color: #333;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.stories-exhibition-poster {
+  grid-column: 1 / -1;
+}
+
+.stories-exhibition-poster img {
+  aspect-ratio: 2 / 1;
+}
+
+.stories-exhibition-film {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: center;
+  margin-top: clamp(36px, 5vw, 70px);
+  padding-top: clamp(32px, 4vw, 60px);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.stories-exhibition-film-copy h4 {
+  max-width: 12ch;
+  margin: 0 0 24px;
+  font-size: clamp(30px, 4.4vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 1.02;
+}
+
+.stories-exhibition-film-copy > p:not(.stories-exhibition-kicker) {
+  max-width: 45ch;
+  margin: 0 0 28px;
+  color: #c8c7c2;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.stories-exhibition-film-copy a {
+  display: inline-block;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.stories-exhibition-film video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: #050505;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .stories-exhibition-intro,
+  .stories-exhibition-film {
+    grid-template-columns: 1fr;
+  }
+
+  .stories-exhibition-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .stories-exhibition-poster,
+  .stories-exhibition-detail,
+  .stories-exhibition-overview,
+  .stories-exhibition-paper {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .stories-exhibition-poster {
+    grid-column: auto;
+  }
+
+}
+
 .media-card {
   grid-column: span 2;
   display: flex;
