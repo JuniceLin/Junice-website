@@ -127,7 +127,11 @@ function tickTypewriter() {
 }
 
 function setPortfolioCategory(category) {
-  portfolioTabs.forEach((tab) => tab.classList.toggle("is-active", tab.dataset.category === category));
+  portfolioTabs.forEach((tab) => {
+    const active = tab.dataset.category === category;
+    tab.classList.toggle("is-active", active);
+    tab.setAttribute("aria-selected", String(active));
+  });
   portfolioPanels.forEach((panel) => panel.classList.toggle("is-active", panel.dataset.categoryPanel === category));
 }
 
@@ -485,7 +489,7 @@ async function transitionPortfolioCategory(category, trigger) {
   }
 
   transitionRunning = true;
-  const tabLabel = trigger?.textContent?.trim() || "Portfolio";
+  const tabLabel = trigger?.dataset.label || "Portfolio";
   await runLensTransition({
     label: tabLabel,
     direction: "forward",

@@ -273,12 +273,12 @@
           <h2>Work across screens, systems, and spaces.</h2>
         </div>
         <div class="portfolio-tabs" role="tablist" aria-label="Portfolio categories">
-          <button class="portfolio-tab is-active" type="button" data-category="uiux">UI/UX Design</button>
-          <button class="portfolio-tab" type="button" data-category="visual">Visual Projects</button>
-          <button class="portfolio-tab" type="button" data-category="vibe">Vibe Coding Web</button>
+          <button class="portfolio-tab is-active" type="button" data-category="visual" role="tab" aria-controls="portfolio-visual-panel" data-label="Visual Projects" aria-selected="true"><span class="portfolio-tab-top"><span>01 / COLLECTION</span><span class="portfolio-tab-glyph" aria-hidden="true">✳</span></span><span class="portfolio-tab-title">Visual Projects</span><span class="portfolio-tab-bottom"><span>IMAGE · OBJECT · FILM</span><span aria-hidden="true">↗</span></span></button>
+          <button class="portfolio-tab" type="button" data-category="uiux" role="tab" aria-controls="portfolio-uiux-panel" data-label="UI/UX Design" aria-selected="false"><span class="portfolio-tab-top"><span>02 / COLLECTION</span><span class="portfolio-tab-glyph" aria-hidden="true">◈</span></span><span class="portfolio-tab-title">UI/UX Design</span><span class="portfolio-tab-bottom"><span>SYSTEM · INTERACTION</span><span aria-hidden="true">↗</span></span></button>
+          <button class="portfolio-tab" type="button" data-category="vibe" role="tab" aria-controls="portfolio-vibe-panel" data-label="Vibe Coding Web" aria-selected="false"><span class="portfolio-tab-top"><span>03 / COLLECTION</span><span class="portfolio-tab-glyph" aria-hidden="true">⌘</span></span><span class="portfolio-tab-title">Vibe Coding Web</span><span class="portfolio-tab-bottom"><span>CODE · EXPERIENCE</span><span aria-hidden="true">↗</span></span></button>
         </div>
         <div class="portfolio-panels">
-          <section class="portfolio-panel is-active" data-category-panel="uiux">
+          <section class="portfolio-panel" data-category-panel="uiux" id="portfolio-uiux-panel" role="tabpanel">
             <article class="project-card project-card-game reveal">
               <div class="work-board game-cover-board">
                 <img loading="lazy" fetchpriority="low" decoding="async" class="game-cover-bg" src="assets/portfolio/dream-team.webp" alt="" aria-hidden="true" />
@@ -322,7 +322,7 @@
               </div>
             </article>
           </section>
-          <section class="portfolio-panel" data-category-panel="visual">
+          <section class="portfolio-panel is-active" data-category-panel="visual" id="portfolio-visual-panel" role="tabpanel">
             <div class="portfolio-gallery">
               <article class="media-card visual-project-card visual-info-card reveal">
                 <div class="visual-window-bar"><button class="visual-window-control visual-close" type="button" aria-label="Release alert marks"></button><button class="visual-window-control visual-minimize" type="button" aria-label="Minimize card"></button><button class="visual-window-control visual-expand" type="button" aria-label="Open PDF"></button><strong>Heterotopia.ai Info</strong></div>
@@ -420,7 +420,7 @@
                 <div class="visual-info-body">
                   <div class="visual-file-summary">
                     <span class="visual-file-mark stories-exhibition-file-mark">Ex</span>
-                    <div><strong>Stories Seldom Told</strong><small>Multimedia exhibition · December 2025</small></div>
+                    <div><strong>Stories Seldom Told</strong><small>Multimedia exhibition · 2025/12/4</small></div>
                   </div>
                   <button class="visual-panel-label" type="button" data-visual-toggle="general" aria-expanded="true">General</button>
                   <div class="visual-info-topline">
@@ -428,8 +428,9 @@
                     <a href="stories-seldom-told.html">Open Gallery</a>
                   </div>
                   <dl class="visual-meta stories-exhibition-meta">
-                    <div><dt>Media</dt><dd>Two posters · Physical paper works · Audio · Film</dd></div>
-                    <div><dt>Idea</dt><dd>We cannot fully control what nature lets us remember.</dd></div>
+                    <div><dt>Kind</dt><dd>Multimedia exhibition · Posters, paper works, audio, and film</dd></div>
+                    <div><dt>Created Time</dt><dd>2025/12/4</dd></div>
+                    <div><dt>Location</dt><dd>Durham, NC, United States</dd></div>
                   </dl>
                   <button class="visual-panel-label visual-preview-label" type="button" data-visual-toggle="preview" aria-expanded="true">Preview</button>
                   <div class="visual-info-preview stories-exhibition-preview">
@@ -443,7 +444,7 @@
                     </div>
                   </div>
                   <button class="visual-panel-label visual-comments-label" type="button" data-visual-toggle="comments" aria-expanded="true">Comments</button>
-                  <p>The exhibition moves between two posters, handwritten paper, sound, and film. I tried to tear, obscure, and distort a memory, yet the damaged page still recalled the moment—sometimes more sharply. The complete sequence and original media are in the gallery.</p>
+                  <p>Stories Seldom Told is a multimedia exhibition about the limits of control over memory. Two posters, a sequence of handwritten paper works, a film, and a sound piece follow one remembered moment through folding, tearing, obscuring, and attempted erasure. The physical pages change, but the experience they carry does not disappear; the damage can make the memory more vivid. The audio extends this idea through my cover of Daniel Caesar’s “Best Part,” recorded repeatedly from one phone to another until the voice becomes quieter beneath accumulating noise. The gallery presents the complete works, their photographed and scanned states, and the time-based media together.</p>
                 </div>
               </article>
               <article class="media-card visual-project-card visual-info-card visual-info-card-large reveal">
@@ -574,7 +575,7 @@
               </article>
             </div>
           </section>
-          <section class="portfolio-panel" data-category-panel="vibe">
+          <section class="portfolio-panel" data-category-panel="vibe" id="portfolio-vibe-panel" role="tabpanel">
             <div class="vibe-showcase">
               <article class="vibe-case reveal">
                 <div class="vibe-terminal" aria-hidden="true">
@@ -786,6 +787,6 @@
       </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20261114-visual-tabs"></script>
   </body>
 </html>
