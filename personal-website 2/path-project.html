@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PATH — Human Decision · Junice Lin</title>
+    <meta name="description" content="A speculative course-registration experience by Yihong Junice Lin exploring how a student's past record can restrict future possibilities. Concept, motivation, interaction design, and AI-assisted prototyping." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="path-project.css?v=20261116" />
+  </head>
+  <body class="path-case-page">
+    <header class="path-header">
+      <a class="path-brand" href="index.html?category=vibe#portfolio">JUNICE LIN</a>
+      <nav aria-label="PATH project navigation">
+        <a href="#concept">Concept</a>
+        <a href="#experience">Experience</a>
+        <a href="#making">Making</a>
+        <a href="index.html?category=vibe#portfolio">Back to Vibe Coding ↗</a>
+      </nav>
+    </header>
+    <main class="path-main">
+      <section class="path-hero" aria-labelledby="path-title">
+        <p class="path-kicker">Vibe Coding / Speculative Interaction / 2026</p>
+        <div class="path-hero-heading">
+          <h1 id="path-title">PATH<span>Human Decision</span></h1>
+          <div class="path-hero-copy">
+            <h2>When a recommendation<br />becomes a rule.</h2>
+            <p>A university registration experience in which your record decides what you are allowed to learn next. You can change your interests. The system keeps your permission locked.</p>
+            <div class="path-links">
+              <a class="path-button" href="https://human-decision-path.vercel.app/" target="_blank" rel="noopener noreferrer">Experience the prototype ↗</a>
+              <a class="path-text-link" href="assets/portfolio/path/physical-artifacts.pdf" target="_blank" rel="noopener noreferrer">View the artifact set ↗</a>
+            </div>
+          </div>
+        </div>
+        <dl class="path-meta">
+          <div><dt>My role</dt><dd>Artifact design, interaction direction, reasoning, and physical fabrication</dd></div>
+          <div><dt>Built with</dt><dd>HTML, CSS, JavaScript, and AI-assisted vibe coding</dd></div>
+          <div><dt>Context</dt><dd>CD490 Senior Seminar · Dangers of AI · Duke Kunshan University</dd></div>
+        </dl>
+        <figure class="path-screen path-hero-screen">
+          <div class="path-window-bar"><span aria-hidden="true">● ● ●</span><span>PATH / Student Self-Service</span><span>Interactive prototype</span></div>
+          <img src="assets/portfolio/path/catalog.webp" width="1265" height="712" alt="PATH course catalog showing Riley Chen's verified learning identity, 28 courses, and separate enrollment permissions" fetchpriority="high" />
+          <figcaption>A familiar registration portal becomes a place to encounter a different distribution of authority.</figcaption>
+        </figure>
+      </section>
+
+      <section id="concept" class="path-section" aria-labelledby="concept-heading">
+        <div class="path-section-heading"><span class="path-kicker">01 / Why I made this</span><h2 id="concept-heading">Can you become someone<br />your data does not predict?</h2></div>
+        <div class="path-reading-columns">
+          <p>I wanted to make an abstract question about AI and human agency tangible through something students already know: choosing a course. Advising systems can make a pathway easier to follow. I wanted to examine what happens when an institution treats that pathway as a boundary around the student.</p>
+          <p>The danger in PATH is a <em>data double</em>: a profile built from past performance that speaks with more institutional authority than a person's new aspirations. A student wants to explore art; the system sees a successful computing record. The work asks who gets to decide which version of that student matters.</p>
+        </div>
+        <div class="path-pivot">
+          <span class="path-kicker">One changed decision</span>
+          <p><a href="https://er.educause.edu/articles/2013/9/degree-compass-a-course-recommendation-system" target="_blank" rel="noopener noreferrer">Degree Compass</a>, introduced at Austin Peay State University in 2011, was a course-advising system. Our counterfactual changes its institutional role: recommendations become binding permissions. Completion targets and administrative efficiency make the change attractive, until an absence of past experience becomes a reason to deny new experience.</p>
+          <p class="path-fiction-note">PATH is a student speculative-design project. Its rules, student record, and institutional notices are fictional. DKU course references and visual identifiers locate the scenario; the prototype is not an official university service.</p>
+        </div>
+      </section>
+
+      <section id="experience" class="path-section" aria-labelledby="experience-heading">
+        <div class="path-section-heading"><span class="path-kicker">02 / The encounter</span><h2 id="experience-heading">Heard by the system.<br />Still unable to choose.</h2></div>
+        <ol class="path-steps">
+          <li><span>01</span><div><h3>Meet your learning identity</h3><p>Visitors become Riley Chen, a computing student whose assessed record defines a verified pathway. The catalog offers 28 course options; a separate authorization rule restricts access.</p></div></li>
+          <li><span>02</span><div><h3>Try to take an art course</h3><p>Seats and ordinary academic requirements are not the issue in the scenario. Choosing outside the profile opens an exception application, while accepting an authorized recommendation is immediate.</p></div></li>
+          <li><span>03</span><div><h3>Update your interests</h3><p>State a new interest and choose a priority. The requested course can move to the top of the list, but enrollment stays locked. Personalization changes the recommendation without transferring authority.</p></div></li>
+        </ol>
+        <figure class="path-screen">
+          <div class="path-window-bar"><span aria-hidden="true">● ● ●</span><span>Interest review / Result</span><span>Recommendation ≠ Permission</span></div>
+          <img src="assets/portfolio/path/interest-review.webp" width="1265" height="712" alt="Drawing moves to number one after the interest update while enrollment authority remains locked outside the verified pathway" loading="lazy" decoding="async" />
+          <figcaption>The central interaction: a new interest is acknowledged while a past record continues to determine eligibility.</figcaption>
+        </figure>
+      </section>
+
+      <section class="path-section" aria-labelledby="artifact-heading">
+        <div class="path-section-heading"><span class="path-kicker">03 / Beyond one student</span><h2 id="artifact-heading">A restriction leaves<br />a paper trail.</h2></div>
+        <div class="path-artifact-layout">
+          <div class="path-artifact-copy">
+            <p>The website is part of a connected artifact set: a learning-identity card, an exception application, a decision record, and a faculty planning notice. Ordinary administrative formats let visitors read the institution through its documents.</p>
+            <p>The faculty notice extends the scenario beyond Riley. Twenty-eight students express interest, only three are authorized, and a course faces suspension for failing to reach a cohort of eight. The institution first limits access, then uses low authorized demand to justify fewer future opportunities.</p>
+            <p>These are scenario figures. The memo stages a feedback loop to question; it is not evidence of a real DKU course closure.</p>
+            <a class="path-text-link" href="assets/portfolio/path/physical-artifacts.pdf" target="_blank" rel="noopener noreferrer">Open the four-page printable artifact set ↗</a>
+          </div>
+          <figure class="path-screen path-memo-screen">
+            <img src="assets/portfolio/path/faculty-notice.webp" width="1280" height="720" alt="Fictional faculty memo showing 28 interested students, three authorized applicants, and an eight-person minimum cohort" loading="lazy" decoding="async" />
+            <figcaption>Faculty planning notice: an individual decision becomes a consequence for a discipline.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="making" class="path-section" aria-labelledby="making-heading">
+        <div class="path-section-heading"><span class="path-kicker">04 / My contribution</span><h2 id="making-heading">Designing the question.<br />Coding the encounter.</h2></div>
+        <div class="path-reading-columns">
+          <div><h3>Human design decisions</h3><p>I decided which artifacts the experience needed and chose DKU course references and institutional visual cues to ground the scenario in campus life. I directed the interaction, developed its reasoning, and made the physical artifacts by hand in Week 3. Asilbek Amonov led research and scenario development.</p></div>
+          <div><h3>AI-assisted implementation</h3><p>I co-developed the content and visual design with AI and used vibe coding to implement and revise the website. The prototype uses deterministic JavaScript, preset permissions, and priority-based ranking. Interest text is recorded and displayed; it is not semantically analyzed by a trained recommender.</p></div>
+        </div>
+        <div class="path-takeaway"><p class="path-kicker">What the iteration revealed</p><p>The important change was to make the system listen without letting it release control. That made the distinction between being recognized and being allowed to change something visitors could encounter for themselves.</p></div>
+        <div class="path-end-links"><a class="path-button" href="https://human-decision-path.vercel.app/" target="_blank" rel="noopener noreferrer">Try PATH ↗</a><a class="path-text-link" href="index.html?category=vibe#portfolio">Back to Vibe Coding ↗</a></div>
+      </section>
+    </main>
+    <footer class="path-footer"><span>PATH / Human Decision</span><span>Yihong (Junice) Lin · 2026</span></footer>
+  </body>
+</html>
