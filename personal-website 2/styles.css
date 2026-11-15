@@ -1085,6 +1085,32 @@ main > .section.is-entering-forward {
   filter: contrast(1.04) saturate(0.96);
 }
 
+.profile-photo-hint {
+  position: absolute;
+  z-index: 2;
+  top: 18px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.profile-photo:hover .profile-photo-hint,
+.profile-photo:focus-visible .profile-photo-hint {
+  background: #fff;
+  color: #000;
+}
+
 .profile-photo figcaption {
   position: absolute;
   z-index: 2;
