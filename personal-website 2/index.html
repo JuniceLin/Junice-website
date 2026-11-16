@@ -16,6 +16,7 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="path-project.css?v=20261116" />
+    <link rel="stylesheet" href="vibe-editor.css?v=20261116-editor" />
   </head>
   <body class="is-home">
     <canvas id="ambient-canvas" aria-hidden="true"></canvas>
@@ -579,70 +580,58 @@
           </section>
           <section class="portfolio-panel" data-category-panel="vibe" id="portfolio-vibe-panel" role="tabpanel">
             <div class="vibe-showcase">
-              <article class="vibe-case path-project-card reveal" id="path-project">
-                <figure class="path-card-preview">
-                  <div class="path-card-bar"><span>PATH / HUMAN DECISION</span><span>2026 ↗</span></div>
-                  <a class="path-card-image" href="path-project.html" aria-label="View PATH Human Decision case study">
-                    <img loading="lazy" decoding="async" src="assets/portfolio/path/interest-review.webp" width="1265" height="712" alt="PATH prototype: a student's art course becomes the top recommendation while enrollment permission remains locked" />
-                  </a>
-                  <figcaption>Recommendation updated. Enrollment authority unchanged.</figcaption>
-                </figure>
-                <div class="vibe-copy">
-                  <p class="eyebrow">Vibe Coding / Speculative Interaction</p>
-                  <h3>PATH — Human Decision</h3>
-                  <p>A course-registration experience where past performance becomes a boundary around future possibilities. You can change your interests; the system keeps your permission locked.</p>
-                  <p>I made PATH to ask what happens when a helpful recommendation gains authority over a student's right to explore.</p>
-                  <dl>
-                    <div><dt>Role</dt><dd>Artifact design, interaction direction, reasoning, and physical fabrication</dd></div>
-                    <div><dt>Build</dt><dd>HTML, CSS, JavaScript, and AI-assisted vibe coding</dd></div>
-                    <div><dt>Output</dt><dd>Interactive portal and a connected set of institutional artifacts</dd></div>
-                  </dl>
-                  <div class="vibe-actions">
-                    <a href="path-project.html">View Project</a>
-                    <a href="https://human-decision-path.vercel.app/" target="_blank" rel="noopener noreferrer">Try Prototype ↗</a>
-                  </div>
-                </div>
-              </article>
-              <article class="vibe-case reveal">
-                <div class="vibe-terminal" aria-hidden="true">
-                  <div class="terminal-bar"><span></span><span></span><span></span><strong>emotion_diary_colab.ipynb</strong></div>
-                  <div class="terminal-screen">
-                    <p><span>&gt;</span> flask run --port 5001</p>
-                    <p><span>&gt;</span> loading records.json</p>
-                    <p><span>&gt;</span> analyzing emotion intensity</p>
-                    <p><span>&gt;</span> rendering mood calendar</p>
-                    <p><span>&gt;</span> public link ready</p>
-                  </div>
-                  <div class="calendar-preview">
-                    <i style="--c:#fdd835"></i><i style="--c:#42a5f5"></i><i style="--c:#ff7043"></i><i style="--c:#9ccc65"></i>
-                    <i style="--c:#d32f2f"></i><i style="--c:#26c6da"></i><i style="--c:#9ccc65"></i><i style="--c:#fdd835"></i>
-                    <i style="--c:#42a5f5"></i><i style="--c:#ff7043"></i><i style="--c:#d32f2f"></i><i style="--c:#26c6da"></i>
-                  </div>
-                </div>
-                <div class="vibe-copy">
-                  <p class="eyebrow">Vibe Coding / Python System</p>
-                  <h3>Emotion Diary Mood Calendar</h3>
-                  <p>
-                    A Flask-based emotion tracking system that records daily feelings, maps them into
-                    six emotion categories, and visualizes emotional patterns through calendar blocks,
-                    day analysis, weekly summaries, monthly insights, and emotion avatar videos.
-                  </p>
-                  <dl>
-                    <div><dt>Role</dt><dd>Creative Coder / System Designer</dd></div>
-                    <div><dt>Tools</dt><dd>Python, Flask, HTML/CSS, Colab</dd></div>
-                    <div><dt>Output</dt><dd>Mood calendar, daily analysis, summaries, and avatar video prototype</dd></div>
-                  </dl>
-                  <div class="vibe-actions">
-                    <a href="emotion-diary.html">View Project</a>
-                    <span>Records → Analysis → Calendar → Reflection</span>
-                  </div>
-                </div>
-              </article>
-              <div class="vibe-process reveal">
-                <article><span>01</span><strong>Capture</strong><p>Visitors record text, tags, and multiple emotion intensities.</p></article>
-                <article><span>02</span><strong>Analyze</strong><p>Python transforms entries into dominant emotions and intensity patterns.</p></article>
-                <article><span>03</span><strong>Visualize</strong><p>The Flask interface turns records into calendar blocks, day details, and summaries.</p></article>
-              </div>
+<article class="editor-window vibe-case path-project-card reveal" id="path-project">
+      <div class="editor-titlebar"><span class="editor-mark" aria-hidden="true">&lt;/&gt;</span><span>PATH / Human Decision — Junice Lin</span><span class="editor-controls" aria-hidden="true"><i></i><i></i><i></i></span></div>
+      <div class="editor-tabs"><span class="editor-tab"><span class="editor-file-icon" aria-hidden="true">⌘</span>path.html<span class="editor-tab-close" aria-hidden="true">×</span></span><span class="editor-tab-label">PROJECT PREVIEW</span></div>
+      <div class="editor-workarea">
+        <div class="editor-activity" aria-hidden="true"><span class="editor-activity-selected"><svg viewBox="0 0 24 24"><path d="M8 3h10v14H8zM5 7H3v14h10v-2" /></svg></span><span><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg></span><span><svg viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 7v10M18 7v3c0 4-12 0-12 5"/></svg></span><span class="editor-activity-code">&lt;&gt;</span></div>
+        <div class="editor-content"><div class="vibe-layout">
+  <figure class="editor-preview">
+    <a href="path-project.html" aria-label="View PATH Human Decision project"><img loading="lazy" decoding="async" src="assets/portfolio/path/interest-review.webp" width="1265" height="712" alt="PATH interest review: a course moves to the top recommendation while permission remains locked" /></a>
+    <figcaption>01 / Recommendation updated. Permission unchanged.</figcaption>
+  </figure>
+  <div class="vibe-copy">
+    <p class="eyebrow">Speculative Interaction / 2026</p>
+    <h3>PATH — Human Decision</h3>
+    <p>A course-registration experience where past performance becomes a boundary around future possibilities. You can change your interests; the system keeps your permission locked.</p>
+    <p>I made PATH to ask what happens when a helpful recommendation gains authority over a student's right to explore.</p>
+    <dl>
+      <div><dt>Role</dt><dd>Artifact design, interaction direction, reasoning, and physical fabrication</dd></div>
+      <div><dt>Build</dt><dd>HTML, CSS, JavaScript, AI-assisted vibe coding</dd></div>
+      <div><dt>Output</dt><dd>Interactive portal and institutional artifact set</dd></div>
+    </dl>
+    <div class="vibe-actions"><a href="path-project.html">View Project ↗</a><a href="https://human-decision-path.vercel.app/" target="_blank" rel="noopener noreferrer">Try Prototype ↗</a></div>
+  </div>
+</div></div>
+      </div>
+      <div class="editor-status"><span><span aria-hidden="true">⑂</span> Portfolio / Vibe Coding</span><span>UTF-8 <span class="editor-status-format"> · HTML</span></span></div>
+    </article>
+<article class="editor-window vibe-case reveal" id="emotion-diary-project">
+      <div class="editor-titlebar"><span class="editor-mark" aria-hidden="true">&lt;/&gt;</span><span>Emotion Diary / Mood Calendar — Junice Lin</span><span class="editor-controls" aria-hidden="true"><i></i><i></i><i></i></span></div>
+      <div class="editor-tabs"><span class="editor-tab"><span class="editor-file-icon" aria-hidden="true">⌘</span>emotion_diary.ipynb<span class="editor-tab-close" aria-hidden="true">×</span></span><span class="editor-tab-label">PROJECT PREVIEW</span></div>
+      <div class="editor-workarea">
+        <div class="editor-activity" aria-hidden="true"><span class="editor-activity-selected"><svg viewBox="0 0 24 24"><path d="M8 3h10v14H8zM5 7H3v14h10v-2" /></svg></span><span><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg></span><span><svg viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 7v10M18 7v3c0 4-12 0-12 5"/></svg></span><span class="editor-activity-code">&lt;&gt;</span></div>
+        <div class="editor-content"><div class="vibe-layout">
+  <figure class="editor-preview">
+    <a href="emotion-diary.html" aria-label="View Emotion Diary Mood Calendar project"><img loading="lazy" decoding="async" src="assets/portfolio/emotion-diary-screens/image1.webp" alt="Emotion Diary mood calendar with color-coded daily emotion blocks" /></a>
+    <figcaption>02 / Daily records become a visual rhythm.</figcaption>
+  </figure>
+  <div class="vibe-copy">
+    <p class="eyebrow">Reflective Interface / Python System</p>
+    <h3>Emotion Diary Mood Calendar</h3>
+    <p>A Flask-based emotion tracking system that records daily feelings and turns them into calendar blocks, daily analysis, weekly summaries, and monthly insights.</p>
+    <p>The project connects structured emotion data with visual reflection and expressive avatar videos.</p>
+    <dl>
+      <div><dt>Role</dt><dd>Creative Coder / System Designer</dd></div>
+      <div><dt>Build</dt><dd>Python, Flask, HTML/CSS, Google Colab</dd></div>
+      <div><dt>Output</dt><dd>Mood calendar, analysis views, and avatar video prototype</dd></div>
+    </dl>
+    <div class="vibe-actions"><a href="emotion-diary.html">View Project ↗</a><a href="assets/portfolio/emotion-diary-colab.ipynb" download>Get Notebook ↓</a></div>
+  </div>
+</div></div>
+      </div>
+      <div class="editor-status"><span><span aria-hidden="true">⑂</span> Portfolio / Vibe Coding</span><span>UTF-8 <span class="editor-status-format"> · IPYNB</span></span></div>
+    </article>
             </div>
           </section>
         </div>
