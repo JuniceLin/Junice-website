@@ -3825,7 +3825,7 @@ input[type="range"]:focus-visible {
 
   .visual-info-card .visual-info-preview {
     height: clamp(320px, 72vh, 560px);
-    margin-inline: 16px;
+    margin-inline: 0;
     padding: 18px 18px 26px;
   }
 
@@ -4270,5 +4270,36 @@ input[type="range"]:focus-visible {
     bottom: 14px;
     left: 14px;
     font-size: 10px;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero-inner {
+    width: 100%;
+  }
+
+  .hero-nav {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .hero-nav a {
+    width: 100%;
+    justify-content: center;
+    padding-inline: 6px;
+    font-size: 11px;
+  }
+
+  .hero-email {
+    margin-top: 20px;
+  }
+
+  .hero-orbit {
+    right: -35vw;
+    opacity: 0.22;
   }
 }
