@@ -4235,3 +4235,40 @@ input[type="range"]:focus-visible {
   .portfolio-tab { min-height: 95px; grid-template-columns: 1fr; gap: 5px; }
   .portfolio-tab-title { font-size: 26px; }
 }
+
+@media (max-width: 900px) {
+  .profile-photo {
+    grid-row: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+  }
+
+  .profile-photo img {
+    height: 100%;
+    min-height: 0;
+    object-position: 50% 35%;
+  }
+}
+
+@media (max-width: 620px) {
+  .profile-photo {
+    width: 100%;
+    max-height: 520px;
+  }
+
+  .profile-photo-hint {
+    top: 12px;
+    right: 12px;
+    padding: 6px;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.22);
+  }
+
+  .profile-photo figcaption {
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+    font-size: 10px;
+  }
+}
