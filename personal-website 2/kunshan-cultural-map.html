@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kunshan Cultural Interactive Map · Junice Lin</title>
+    <meta name="description" content="A bilingual information-visualization and HCI project connecting Kunshan cultural records, documented relationships, visible sources, and route planning." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="path-project.css?v=20261116" />
+    <link rel="stylesheet" href="vibe-editor.css?v=20261116-editor" />
+  </head>
+  <body class="path-case-page vibe-detail-page">
+    <header class="path-header">
+      <a class="path-brand" href="index.html?category=vibe#portfolio">JUNICE LIN</a>
+      <nav aria-label="Kunshan Cultural Interactive Map project navigation">
+        <a href="#question">Question</a>
+        <a href="#system">System</a>
+        <a href="#contribution">Contribution</a>
+        <a href="index.html?category=vibe#portfolio">Back to Vibe Coding ↗</a>
+      </nav>
+    </header>
+
+    <main class="path-main">
+      <section class="path-hero" aria-labelledby="kunshan-title">
+        <p class="path-kicker">Vibe Coding / Information Visualization / HCI / 2026</p>
+        <div class="path-hero-heading">
+          <h1 id="kunshan-title">Kunshan Cultural<span>Interactive Map</span></h1>
+          <div class="path-hero-copy">
+            <h2>Explore local culture without hiding where the information comes from.</h2>
+            <p>A bilingual web experience for visitors, students, newcomers, and interested residents to discover Kunshan cultural records, inspect documented connections, and compare possible routes.</p>
+            <div class="path-links">
+              <a class="path-button" href="https://kunshan-cultural-interactive-map.vercel.app/" target="_blank" rel="noopener noreferrer">Experience the prototype ↗</a>
+              <a class="path-text-link" href="https://github.com/YiranZheng0206/Kunshan-Cultural-Interactive-Map" target="_blank" rel="noopener noreferrer">View the repository ↗</a>
+            </div>
+          </div>
+        </div>
+        <dl class="path-meta">
+          <div><dt>My role</dt><dd>Data curation, interaction iteration, UI/UX design, and paper development</dd></div>
+          <div><dt>Built with</dt><dd>HTML, CSS, JavaScript, Leaflet, OSRM, and AI-assisted vibe coding</dd></div>
+          <div><dt>Team</dt><dd>Yihong Lin, Yiran Zheng, and Sitong Chang · INFOSCI 301</dd></div>
+        </dl>
+        <div class="editor-window">
+          <div class="editor-titlebar"><span class="editor-mark" aria-hidden="true">&lt;/&gt;</span><span>Kunshan / Cultural Route Workspace</span><span class="editor-controls" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="editor-tabs"><span class="editor-tab"><span class="editor-file-icon" aria-hidden="true">⌘</span>map.html<span class="editor-tab-close" aria-hidden="true">×</span></span><span class="editor-tab-label">PROJECT PREVIEW</span></div>
+          <div class="editor-workarea">
+            <div class="editor-activity" aria-hidden="true"><span class="editor-activity-selected"><svg viewBox="0 0 24 24"><path d="M8 3h10v14H8zM5 7H3v14h10v-2" /></svg></span><span><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg></span><span><svg viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 7v10M18 7v3c0 4-12 0-12 5"/></svg></span><span class="editor-activity-code">&lt;&gt;</span></div>
+            <div class="editor-content"><figure class="path-screen path-hero-screen">
+              <img src="assets/portfolio/kunshan-map/map-route.webp" width="1600" height="1000" alt="Kunshan Cultural Interactive Map showing bilingual filters, cultural records, map markers, and three route modes" fetchpriority="high" />
+              <figcaption>The map view connects cultural discovery with a route-planning workflow while keeping coordinate and transport limits visible.</figcaption>
+            </figure></div>
+          </div>
+          <div class="editor-status"><span><span aria-hidden="true">⑂</span> Case study / Interactive visualization</span><span>UTF-8 <span class="editor-status-format"> · HTML</span></span></div>
+        </div>
+      </section>
+
+      <section id="question" class="path-section" aria-labelledby="question-heading">
+        <div class="path-section-heading"><span class="path-kicker">01 / The question</span><h2 id="question-heading">How can a map help people explore culture without presenting a student dataset as a complete account?</h2></div>
+        <div class="path-reading-columns">
+          <p>The project began as a simple map. Through field visits and peer review, the team saw that locations alone could not explain why a record matters or how one cultural item connects to another. The redesign added bilingual descriptions, source links, relationship evidence, and clear boundaries around approximate coordinates.</p>
+          <p>The final dataset contains 82 records, 67 documented relationships, and 13 source collections. These numbers describe the course dataset, not all cultural heritage in Kunshan. The system makes that boundary visible instead of turning coverage into a claim of completeness.</p>
+        </div>
+        <div class="path-pivot">
+          <span class="path-kicker">Evidence before authority</span>
+          <p>Every record can expose its source, image credit, geographic precision, and documented relationships. Route results are framed as planning aids rather than verified live navigation. The public-transport option opens AMap for a current route check.</p>
+        </div>
+      </section>
+
+      <section id="system" class="path-section" aria-labelledby="system-heading">
+        <div class="path-section-heading"><span class="path-kicker">02 / The system</span><h2 id="system-heading">Five connected views support one exploration task.</h2></div>
+        <ol class="path-steps">
+          <li><span>01</span><div><h3>Explore the map</h3><p>Filter bilingual records by category, search by name, and inspect where cultural sites and practices are documented.</p></div></li>
+          <li><span>02</span><div><h3>Compare categories</h3><p>See how 82 records are distributed across places, artifacts, food, traditions, and stories.</p></div></li>
+          <li><span>03</span><div><h3>Inspect relationships</h3><p>Select a node to reveal evidence-linked neighbors without implying distance, strength, or causality.</p></div></li>
+          <li><span>04</span><div><h3>Read the evidence</h3><p>Open record details to see descriptions, source collections, image credits, and location precision.</p></div></li>
+          <li><span>05</span><div><h3>Compare routes</h3><p>Save stops and compare fastest, scenic, and transit-oriented planning ideas with visible limits.</p></div></li>
+        </ol>
+        <div class="editor-window">
+          <div class="editor-titlebar"><span class="editor-mark" aria-hidden="true">&lt;/&gt;</span><span>Kunshan / Cultural Patterns</span><span class="editor-controls" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="editor-tabs"><span class="editor-tab"><span class="editor-file-icon" aria-hidden="true">⌘</span>patterns.html<span class="editor-tab-close" aria-hidden="true">×</span></span><span class="editor-tab-label">PROJECT PREVIEW</span></div>
+          <div class="editor-workarea">
+            <div class="editor-activity" aria-hidden="true"><span class="editor-activity-selected"><svg viewBox="0 0 24 24"><path d="M8 3h10v14H8zM5 7H3v14h10v-2" /></svg></span><span><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg></span><span><svg viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 7v10M18 7v3c0 4-12 0-12 5"/></svg></span><span class="editor-activity-code">&lt;&gt;</span></div>
+            <div class="editor-content"><figure class="path-screen">
+              <img src="assets/portfolio/kunshan-map/patterns.webp" width="1600" height="1000" alt="Cultural patterns view showing category distribution, relationship network, source-linked evidence, and evidence boundaries" loading="lazy" decoding="async" />
+              <figcaption>The patterns view separates dataset composition from documented cultural relationships and explains what each visual mark can support.</figcaption>
+            </figure></div>
+          </div>
+          <div class="editor-status"><span><span aria-hidden="true">⑂</span> Case study / Evidence view</span><span>UTF-8 <span class="editor-status-format"> · HTML</span></span></div>
+        </div>
+      </section>
+
+      <section id="contribution" class="path-section" aria-labelledby="contribution-heading">
+        <div class="path-section-heading"><span class="path-kicker">03 / My contribution</span><h2 id="contribution-heading">Turning cultural data into a clearer, more accountable experience.</h2></div>
+        <div class="path-reading-columns">
+          <div><h3>Data and iteration</h3><p>I prepared and checked the data, reviewed image and source records, and helped turn feedback into concrete revisions. The system expanded from a small prototype into 82 records with visible provenance and evidence boundaries.</p></div>
+          <div><h3>UI/UX direction</h3><p>I led interface iteration across the landing experience, markers, filters, relationship view, record details, and route comparison. I focused on reducing misunderstanding: a network line means a documented relationship, a coordinate may be approximate, and a route estimate is not live transit guidance.</p></div>
+        </div>
+        <div class="path-takeaway"><p class="path-kicker">What the project taught me</p><p>A cultural visualization becomes more useful when it helps people inspect uncertainty and provenance, not only when it makes a place look inviting.</p></div>
+        <div class="path-end-links"><a class="path-button" href="https://kunshan-cultural-interactive-map.vercel.app/" target="_blank" rel="noopener noreferrer">Try the map ↗</a><a class="path-text-link" href="index.html?category=vibe#portfolio">Back to Vibe Coding ↗</a></div>
+      </section>
+    </main>
+    <footer class="path-footer"><span>Kunshan Cultural Interactive Map</span><span>Yihong (Junice) Lin · Team 6 · 2026</span></footer>
+  </body>
+</html>
